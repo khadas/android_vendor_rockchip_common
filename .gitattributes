@@ -1,0 +1,2 @@
+MaliT860/lib/arm/libGLES_mali.so filter=lfs diff=lfs merge=lfs -text
+MaliT860/lib/arm64/libGLES_mali.so filter=lfs diff=lfs merge=lfs -text
