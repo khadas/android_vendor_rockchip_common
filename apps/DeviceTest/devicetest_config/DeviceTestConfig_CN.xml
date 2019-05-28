@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseList>
+	<TestCase class_name="VersionTestActivity" test_group="TEST ALL">版本</TestCase>
+	<TestCase class_name="InfomationActivity" test_group="TEST ALL" first_test="yc">硬件信息</TestCase>
+	<TestCase class_name="LcdTestActivity" test_group="TEST ALL">LCD</TestCase>
+	<TestCase class_name="TouchTestActivity" test_group="TEST ALL">触屏</TestCase>
+	<!-- <TestCase class_name="PenTestActivity" test_group="TEST ALL">电磁笔</TestCase> -->
+	<TestCase class_name="CameraTestActivity" test_group="TEST ALL">摄像头</TestCase>
+	<TestCase class_name="CameraBackTestActivity" test_group="TEST ALL">单摄像头</TestCase>
+	 <TestCase class_name="VibrationTestActivity" test_group="TEST ALL">震动</TestCase> 
+	<TestCase class_name="SpeakerTestActivity" test_group="TEST ALL" first_test="yc">喇叭</TestCase>
+	<TestCase class_name="GsensorTestActivity" test_group="TEST ALL" first_test="yc">重力感应</TestCase>
+	<!-- <TestCase class_name="HardwareInfoTestActivity" test_group="TEST AUTO">Hardware</TestCase> -->
+	<TestCase class_name="BluetoothTestActivity" test_group="TEST ALL">蓝牙</TestCase>
+	<TestCase class_name="WifiTestActivity" test_group="TEST ALL" first_test="yc">无线</TestCase>
+	<!-- <TestCase class_name="GpsTestActivity" test_group="TEST ALL">GPS</TestCase> -->
+	<TestCase class_name="PhoneMicTestActivity" test_group="TEST ALL" first_test="yc">录音</TestCase>
+	<!-- <TestCase class_name="StorageTestActivity" test_group="TEST AUTO">Storage R/W</TestCase> -->
+	<TestCase class_name="PowerTestActivity" test_group="TEST ALL">电池</TestCase>
+	<TestCase class_name="SdCardTestActivity" test_group="TEST ALL" first_test="yc">sd卡</TestCase>
+	<TestCase class_name="KeyboardTestActivity" test_group="TEST ALL" first_test="yc">键盘</TestCase>
+	<TestCase class_name="BrightnessTestActivity" test_group="TEST ALL">亮度</TestCase>
+	<TestCase class_name="UsbHostTestActivity" test_group="TEST ALL">u盘</TestCase>
+
+	<!-- TestCase class_name="GpsLocationTestActivity" test_group="TEST 2">GPS Location</TestCase> -->
+	<!-- <TestCase class_name="MrioUSBTestActivity" test_group="TEST 2">Mrio USB</TestCase> -->
+
+	<TestCase class_name="HdmiTestActivity" test_group="TEST ALL">HDMI</TestCase>
+	<TestCase class_name="GpsLocationTestActivity" test_group="TEST ALL">GPS</TestCase>
+	<!-- <TestCase class_name="GpsTestActivity" test_group="TEST ALL">GPSTest</TestCase>  -->
+	<TestCase class_name="StorageActivity" test_group="TEST ALL" first_test="yc">存储</TestCase>
+	<TestCase class_name="CompassTestActivity" test_group="TEST ALL">罗盘</TestCase> -->
+
+	<!--<TestCase class_name="LevelTestActivity" test_group="rest">Level</TestCase> -->
+	<TestCase class_name="MsensorTestActivity" test_group="TEST ALL">磁场感应</TestCase>
+	<TestCase class_name="GyroscopeTestActivity" test_group="TEST ALL">陀螺仪</TestCase>
+	 <TestCase class_name="LightsensorTestActivity" test_group="TEST ALL">光感</TestCase>
+	 <TestCase class_name="RockVideoPlayer" test_group="TEST ALL">视频播放</TestCase>
+     <!--    <TestCase class_name="ClockTestActivity" test_group="TEST ALL">Clock</TestCase>-->
+
+	<!--<TestCase class_name="HeadsetMicTestActivity" test_group="rest">Headset MIC</TestCase> -->
+	<!-- <TestCase class_name="SimCardTestActivity" test_group="rest">Sim Card</TestCase> -->
+	<!-- <TestCase class_name="FMRadioTestActivity" test_group="rest">FM Radio</TestCase> -->
+	<!-- <TestCase class_name="LedTestActivity" test_group="TEST ALL">LED</TestCase> -->
+	<!-- 	<TestCase class_name="CirTestActivity" test_group="TEST 1">Cir</TestCase>
+        <TestCase class_name="IrdaTestActivity" test_group="TEST 1">IrDA</TestCase> -->
+<!-- <TestCase class_name="CompassTestActivity" test_group="TEST 3">Compass</TestCase> -->
+	<!-- <TestCase class_name="RuninTestActivity" test_group="RunIn">Runin</TestCase> -->
+	<!-- <TestCase class_name="CCM3310SActivity" test_group="TEST ALL">CCM3310S</TestCase> -->
+</TestCaseList>
