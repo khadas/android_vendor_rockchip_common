@@ -10,12 +10,12 @@ PRODUCT_COPY_FILES += \
     $(CUR_PATH)/phone/etc/ppp/call-pppd:system/etc/ppp/call-pppd \
     $(CUR_PATH)/phone/etc/operator_table:system/etc/operator_table
 
-ifeq ($(strip $(PRODUCT_MODEM)), DTS4108C)
-PRODUCT_COPY_FILES += \
-    $(CUR_PATH)/phone/bin/rild_dts4108c:system/bin/rild \
-    $(CUR_PATH)/phone/lib/libreference-ril-dts4108c.so:system/lib/libreference-ril.so \
-    $(CUR_PATH)/phone/lib/libril-dts4108c.so:system/lib/libril.so
-endif
+#ifeq ($(strip $(PRODUCT_MODEM)), DTS4108C)
+#PRODUCT_COPY_FILES += \
+#    $(CUR_PATH)/phone/bin/rild_dts4108c:system/bin/rild \
+#    $(CUR_PATH)/phone/lib/libreference-ril-dts4108c.so:system/lib/libreference-ril.so \
+#    $(CUR_PATH)/phone/lib/libril-dts4108c.so:system/lib/libril.so
+#endif
 
 ifeq ($(strip $(BOARD_HAVE_DONGLE)),true)
 PRODUCT_PACKAGES += \
@@ -30,7 +30,10 @@ else
 PRODUCT_PROPERTY_OVERRIDES +=ro.boot.noril=true
 endif
 
-
+PRODUCT_COPY_FILES += \
+    $(CUR_PATH)/phone/lib/arm64_me906s/libhuawei-ril.so:vendor/lib64/libreference-ril.so \
+    $(CUR_PATH)/phone/lib/arm32_me906s/libhuawei-ril.so:vendor/lib/libreference-ril.so
+    
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.com.android.dataroaming=true \
