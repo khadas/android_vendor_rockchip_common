@@ -7,6 +7,7 @@ CUR_PATH := vendor/rockchip/common
 PRODUCT_COPY_FILES += \
     $(CUR_PATH)/phone/etc/ppp/ip-down:system/etc/ppp/ip-down \
     $(CUR_PATH)/phone/etc/ppp/ip-up:system/etc/ppp/ip-up \
+	$(CUR_PATH)/phone/etc/ppp/chat:system/bin/chat \
     $(CUR_PATH)/phone/etc/ppp/call-pppd:system/etc/ppp/call-pppd \
     $(CUR_PATH)/phone/etc/operator_table:system/etc/operator_table
 
@@ -31,8 +32,8 @@ PRODUCT_PROPERTY_OVERRIDES +=ro.boot.noril=true
 endif
 
 PRODUCT_COPY_FILES += \
-    $(CUR_PATH)/phone/lib/arm64_me906s/libhuawei-ril.so:vendor/lib64/libreference-ril.so \
-    $(CUR_PATH)/phone/lib/arm32_me906s/libhuawei-ril.so:vendor/lib/libreference-ril.so
+    $(CUR_PATH)/phone/lib/arm64_em06/libreference-ril.so:vendor/lib64/libreference-ril.so \
+    $(CUR_PATH)/phone/lib/arm32_em06/libreference-ril.so:vendor/lib/libreference-ril.so
     
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
