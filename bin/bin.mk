@@ -1,8 +1,18 @@
 ifeq ($(strip $(TARGET_ARCH)), arm)
 
 PRODUCT_PACKAGES += \
-    busybox         \
     mkdosfs         \
-    sdtool
 
+endif
+
+ifeq ($(strip $(TARGET_ARCH)), arm64)
+
+PRODUCT_PACKAGES += \
+    mkdosfs         \
+
+endif
+
+ifneq (,$(filter user userdebug eng,$(TARGET_BUILD_VARIANT)))
+PRODUCT_PACKAGES += \
+	busybox
 endif

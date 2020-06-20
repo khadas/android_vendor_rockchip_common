@@ -1,0 +1,25 @@
+bootstrap_go_package {
+    name: "soong-librtopus",
+    pkgPath: "android/soong/librtopus",
+    deps: [
+        "blueprint",
+        "blueprint-pathtools",
+        "soong",
+        "soong-android",
+        "soong-cc",
+        "soong-genrule",
+    ],
+    srcs: [
+          "Android.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+cc_librtopus_prebuilt_library_shared {
+    name: "librtopus",
+    compile_multilib: "32",
+    strip: {
+      none: true,
+    },
+
+}

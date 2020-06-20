@@ -7,50 +7,43 @@ PRODUCT_PACKAGES += \
 	com.broadcom.bt.xml
 endif
 
-ifeq ($(strip $(MT6622_BT_SUPPORT)),true)
 #PRODUCT_COPY_FILES += \
-    vendor/rockchip/common/bluetooth/mt6622/libbluetooth_mtk.so:system/lib/libbluetooth_mtk.so \
-    vendor/rockchip/common/bluetooth/mt6622/libbt-vendor.so:system/lib/libbt-vendor.so
-endif
-
-ifeq ($(strip $(BOARD_CONNECTIVITY_MODULE)), rtl8723as)
-PRODUCT_COPY_FILES += \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723as/rtl8723a_fw:system/etc/firmware/rtlbt/rtlbt_fw \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723as/rtl8723a_config:system/etc/firmware/rtlbt/rtlbt_config
-endif
-
-ifeq ($(strip $(BOARD_CONNECTIVITY_MODULE)), rtl8723bs)
-PRODUCT_COPY_FILES += \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723bs/rtl8723b_fw:system/etc/firmware/rtlbt/rtlbt_fw
-
-#use external or internal 32k clock
-USE_EXT_32K_CLK := false
-ifeq ($(strip $(USE_EXT_32K_CLK)), true)
-# use external 32k clock    
-PRODUCT_COPY_FILES += \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723bs/rtl8723b_config.external:system/etc/firmware/rtlbt/rtlbt_config
-else
-# use internal 32k clock  
-PRODUCT_COPY_FILES += \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723bs/rtl8723b_config.internal:system/etc/firmware/rtlbt/rtlbt_config
-endif
-endif
-
-ifeq ($(strip $(BOARD_CONNECTIVITY_MODULE)), rtl8723au)
-PRODUCT_COPY_FILES += \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723au/rtl8723a_fw:system/etc/firmware/rtl8723a_fw \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723au/rtl8723a_config:system/etc/firmware/rtl8723a_config
-endif
-
-ifeq ($(strip $(BOARD_CONNECTIVITY_MODULE)), rtl8723bu)
-PRODUCT_COPY_FILES += \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723bu/rtl8723b_fw:system/etc/firmware/rtl8723b_fw \
-    vendor/rockchip/common/bluetooth/realtek/bt/firmware/rtl8723bu/rtl8723bu_config:system/etc/firmware/rtl8723bu_config
-endif
+	$(LOCAL_PATH)/realtek/firmware/rtl8723b_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723b_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723b_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723b_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723bs_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723bs_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723bs_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723bs_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723bs_VQ0_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723bs_VQ0_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723bs_VQ0_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723bs_VQ0_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723bu_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723bu_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723d_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723d_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723d_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723d_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723ds_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723ds_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8723ds_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8723ds_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761a_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761a_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761a_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761a_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761at_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761at_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761at_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761at_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761au8192ee_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761au8192ee_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761au8812ae_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761au8812ae_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761au_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761au_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761aw8192eu_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761aw8192eu_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8761aw8192eu_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8761aw8192eu_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8821a_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8821a_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8821a_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8821a_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8821as_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8821as_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8821as_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8821as_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8821c_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8821c_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8821c_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8821c_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8821cs_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8821cs_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8821cs_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8821cs_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8822b_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8822b_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8822b_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8822b_fw \
+	$(LOCAL_PATH)/realtek/firmware/rtl8822bs_config:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8822bs_config \
+	$(LOCAL_PATH)/realtek/firmware/rtl8822bs_fw:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/rtl8822bs_fw
 
 BT_FIRMWARE_FILES := $(shell ls $(CUR_PATH)/lib/firmware)
 PRODUCT_COPY_FILES += \
-    $(foreach file, $(BT_FIRMWARE_FILES), $(CUR_PATH)/lib/firmware/$(file):system/vendor/firmware/$(file))
+    $(foreach file, $(BT_FIRMWARE_FILES), $(CUR_PATH)/lib/firmware/$(file):$(TARGET_COPY_OUT_VENDOR)/etc/firmware/$(file))
 
-include vendor/rockchip/common/bluetooth/console_start_bt/console_start_bt.mk
+#include vendor/rockchip/common/bluetooth/console_start_bt/console_start_bt.mk
 
