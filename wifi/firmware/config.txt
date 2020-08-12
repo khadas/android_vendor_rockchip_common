@@ -1,0 +1,1 @@
+nv_by_chip=2 0x4354 2 nvram_ap6354.txt 0x4359 9 nvram_ap6398s.txt
