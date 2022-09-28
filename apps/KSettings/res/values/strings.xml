@@ -7,6 +7,8 @@
     <string name="PowerKey">PowerKey definition</string>
     <string name="FunctionKey">FunctionKey definition</string>
     <string name="LEDs">LEDs control</string>
+    <string name="SYS_LEDs">SYS LEDs control</string>
+    <string name="MCU_LEDs">MCU LEDs control</string>
     <string name="Cooling_fan">Cooling fan</string>
     <string name="WOL">WOL</string>
     <string name="Status_bar_control">Status bar control</string>
@@ -104,6 +106,14 @@
     <string name="Logo_LED" translatable="false">Logo LED</string>
     <string name="LEDs_default">Always on</string>
 
+	<string name="MCU_LED_red">MCU Red LED</string>
+    <string name="MCU_LED_green">MCU Green LED</string>
+    <string name="MCU_LED_blue">MCU Blue LED</string>
+
+	<string name="MCU_LED_white">MCU LEDs</string>
+	<string name="SYS_LED_white">SYS LEDs</string>
+
+
     <string-array name="LEDs_array">
         <item>Breath mode</item>
         <item>Always on</item>
@@ -118,6 +128,13 @@
     <string name="LED_red_default">Always on</string>
     <string name="LED_green_default">Always off</string>
     <string name="LED_blue_default">Always off</string>
+
+	<string name="MCU_LED_white_default">Always on</string>
+	<string name="MCU_LED_ON_default">Always on</string>
+	<string name="MCU_LED_OFF_default">Always off</string>
+	<string name="MCU_LED_default">Red LED</string>
+	<string name="MCU_White_LED_default">White LED</string>
+
     <string-array name="Red_LEDs_array">
         <item>Always off</item>
         <item>Always on</item>
@@ -130,7 +147,6 @@
         <item>3</item>
         <item>4</item>
     </string-array>
-
     <string-array name="Green_LEDs_array">
         <item>Always off</item>
         <item>Always on</item>
@@ -143,7 +159,6 @@
         <item>3</item>
         <item>4</item>
     </string-array>
-
     <string-array name="Blue_LEDs_array">
         <item>Always off</item>
         <item>Always on</item>
@@ -156,6 +171,186 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
+	<string-array name="MCU_White_LEDs_array">
+        <item>Red LED</item>
+        <item>Green LED</item>
+        <item>Blue LED</item>
+        <item>Always on</item>
+		<item>Always off</item>
+    </string-array>
+    <string-array name="MCU_White_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+		<item>5</item>
+    </string-array>
+
+	<string name="MCU_LED_ON">Always on(System on)</string>
+	<string name="MCU_LED_OFF">Always off(System on)</string>
+	<string name="MCU_LED_Breath">Breath mode(System on)</string>
+	<string name="MCU_LED_HeartBeat">HeartBeat mode(System on)</string>
+	<string name="MCU_LED_RED_BRI">Red LED brightness level(System on)</string>
+	<string name="MCU_LED_GREEN_BRI">Green LED brightness level(System on)</string>
+	<string name="MCU_LED_BLUE_BRI">Blue LED brightness level(System on)</string>
+
+	<string name="MCU_LED_ON_OFF">Always on(System off)</string>
+	<string name="MCU_LED_OFF_OFF">Always off(System off)</string>
+	<string name="MCU_LED_Breath_OFF">Breath mode(System off)</string>
+	<string name="MCU_LED_HeartBeat_OFF">HeartBeat mode(System off)</string>
+	<string name="MCU_LED_RED_BRI_OFF">Red LED brightness level(System off)</string>
+	<string name="MCU_LED_GREEN_BRI_OFF">Green LED brightness level(System off)</string>
+	<string name="MCU_LED_BLUE_BRI_OFF">Blue LED brightness level(System off)</string>
+
+	<string-array name="MCU_ON_LEDs_array">
+        <item>Red LED</item>
+        <item>Green LED</item>
+        <item>Blue LED</item>
+        <item>White LED</item>
+    </string-array>
+    <string-array name="MCU_ON_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+	<string-array name="MCU_OFF_LEDs_array">
+        <item>White LED</item>
+    </string-array>
+    <string-array name="MCU_OFF_LEDs_array_value">
+        <item>1</item>
+    </string-array>
+
+	<string-array name="MCU_Breath_LEDs_array">
+        <item>Red LED</item>
+        <item>Green LED</item>
+        <item>Blue LED</item>
+		<item>RedGreen LED</item>
+		<item>RedBlue LED</item>
+		<item>GreenBlue LED</item>
+        <item>White LED</item>
+    </string-array>
+    <string-array name="MCU_Breath_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+    </string-array>
+	<string-array name="MCU_HeartBeat_LEDs_array">
+        <item>Red LED</item>
+        <item>Green LED</item>
+        <item>Blue LED</item>
+		<item>RedGreen LED</item>
+		<item>RedBlue LED</item>
+		<item>GreenBlue LED</item>
+        <item>White LED</item>
+    </string-array>
+    <string-array name="MCU_HeartBeat_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+    </string-array>
+
+	<string-array name="MCU_RED_BRI_LEDs_array">
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+		<item>80</item>
+		<item>100</item>
+		<item>120</item>
+        <item>140</item>
+		<item>160</item>
+		<item>180</item>
+		<item>200</item>
+		<item>220</item>
+		<item>240</item>
+		<item>max</item>
+    </string-array>
+    <string-array name="MCU_RED_BRI_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+		<item>11</item>
+		<item>12</item>
+		<item>13</item>
+    </string-array>
+	<string-array name="MCU_GREEN_BRI_LEDs_array">
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+		<item>80</item>
+		<item>100</item>
+		<item>120</item>
+        <item>140</item>
+		<item>160</item>
+		<item>180</item>
+		<item>200</item>
+		<item>220</item>
+		<item>240</item>
+		<item>max</item>
+    </string-array>
+    <string-array name="MCU_GREEN_BRI_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+		<item>11</item>
+		<item>12</item>
+		<item>13</item>
+    </string-array>
+	<string-array name="MCU_BLUE_BRI_LEDs_array">
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+		<item>80</item>
+		<item>100</item>
+		<item>120</item>
+        <item>140</item>
+		<item>160</item>
+		<item>180</item>
+		<item>200</item>
+		<item>220</item>
+		<item>240</item>
+		<item>max</item>
+    </string-array>
+    <string-array name="MCU_BLUE_BRI_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+		<item>11</item>
+		<item>12</item>
+		<item>13</item>
+    </string-array>
+
 
     <string name="FAN_default">Automatic speed control(temperature dependent)</string>
     <string-array name="FAN_array">
