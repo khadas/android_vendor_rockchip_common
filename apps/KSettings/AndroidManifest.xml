@@ -34,6 +34,21 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SYS_LEDs_Preference"
+	    android:label="@string/SYS_LEDs">
+	    <intent-filter>
+		    <action android:name="android.intent.action.MAIN" />
+	    </intent-filter>
+    </activity>
+        <activity
+            android:name=".MCU_LEDs_Preference"
+	    android:label="@string/MCU_LEDs">
+	    <intent-filter>
+		    <action android:name="android.intent.action.MAIN" />
+	    </intent-filter>
+    </activity>
+
     </application>
 
 </manifest>

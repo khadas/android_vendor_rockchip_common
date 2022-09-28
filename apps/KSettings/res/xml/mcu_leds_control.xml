@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- SYSTEM ON -->
+	<ListPreference
+		android:key="MCU_LED_OFF_KEY"
+		android:title="@string/MCU_LED_OFF"
+		android:summary="@string/MCU_White_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_OFF"
+		android:entries="@array/MCU_OFF_LEDs_array"
+		android:entryValues="@array/MCU_OFF_LEDs_array_value">
+	</ListPreference>
+	<ListPreference
+		android:key="MCU_LED_ON_KEY"
+		android:title="@string/MCU_LED_ON"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_ON"
+		android:entries="@array/MCU_ON_LEDs_array"
+		android:entryValues="@array/MCU_ON_LEDs_array_value">
+	</ListPreference>
+	<ListPreference
+		android:key="MCU_LED_Breath_KEY"
+		android:title="@string/MCU_LED_Breath"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_Breath"
+		android:entries="@array/MCU_Breath_LEDs_array"
+		android:entryValues="@array/MCU_Breath_LEDs_array_value">
+	</ListPreference>
+	<ListPreference
+		android:key="MCU_LED_HeartBeat_KEY"
+		android:title="@string/MCU_LED_HeartBeat"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_HeartBeat"
+		android:entries="@array/MCU_HeartBeat_LEDs_array"
+		android:entryValues="@array/MCU_HeartBeat_LEDs_array_value">
+	</ListPreference>
+
+   	<ListPreference
+		android:key="MCU_LED_RED_BRI_KEY"
+		android:title="@string/MCU_LED_RED_BRI"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_RED_BRI"
+		android:entries="@array/MCU_RED_BRI_LEDs_array"
+		android:entryValues="@array/MCU_RED_BRI_LEDs_array_value">
+	</ListPreference>
+	
+	<ListPreference
+		android:key="MCU_LED_GREEN_BRI_KEY"
+		android:title="@string/MCU_LED_GREEN_BRI"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_GREEN_BRI"
+		android:entries="@array/MCU_GREEN_BRI_LEDs_array"
+		android:entryValues="@array/MCU_GREEN_BRI_LEDs_array_value">
+	</ListPreference>
+	
+	<ListPreference
+		android:key="MCU_LED_BLUE_BRI_KEY"
+		android:title="@string/MCU_LED_BLUE_BRI"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_BLUE_BRI"
+		android:entries="@array/MCU_BLUE_BRI_LEDs_array"
+		android:entryValues="@array/MCU_BLUE_BRI_LEDs_array_value">
+	</ListPreference>
+
+	<!-- SYSTEM OFF -->
+	<ListPreference
+		android:key="MCU_LED_OFF_OFF_KEY"
+		android:title="@string/MCU_LED_OFF_OFF"
+		android:summary="@string/MCU_White_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_OFF_OFF"
+		android:entries="@array/MCU_OFF_LEDs_array"
+		android:entryValues="@array/MCU_OFF_LEDs_array_value">
+	</ListPreference>
+	<ListPreference
+		android:key="MCU_LED_ON_OFF_KEY"
+		android:title="@string/MCU_LED_ON_OFF"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_ON_OFF"
+		android:entries="@array/MCU_ON_LEDs_array"
+		android:entryValues="@array/MCU_ON_LEDs_array_value">
+	</ListPreference>
+	<ListPreference
+		android:key="MCU_LED_Breath_OFF_KEY"
+		android:title="@string/MCU_LED_Breath_OFF"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_Breath_OFF"
+		android:entries="@array/MCU_Breath_LEDs_array"
+		android:entryValues="@array/MCU_Breath_LEDs_array_value">
+	</ListPreference>
+	<ListPreference
+		android:key="MCU_LED_HeartBeat_OFF_KEY"
+		android:title="@string/MCU_LED_HeartBeat_OFF"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_HeartBeat_OFF"
+		android:entries="@array/MCU_HeartBeat_LEDs_array"
+		android:entryValues="@array/MCU_HeartBeat_LEDs_array_value">
+	</ListPreference>
+
+   	<ListPreference
+		android:key="MCU_LED_RED_BRI_OFF_KEY"
+		android:title="@string/MCU_LED_RED_BRI_OFF"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_RED_BRI_OFF"
+		android:entries="@array/MCU_RED_BRI_LEDs_array"
+		android:entryValues="@array/MCU_RED_BRI_LEDs_array_value">
+	</ListPreference>
+	
+	<ListPreference
+		android:key="MCU_LED_GREEN_BRI_OFF_KEY"
+		android:title="@string/MCU_LED_GREEN_BRI_OFF"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_GREEN_BRI_OFF"
+		android:entries="@array/MCU_GREEN_BRI_LEDs_array"
+		android:entryValues="@array/MCU_GREEN_BRI_LEDs_array_value">
+	</ListPreference>
+	
+	<ListPreference
+		android:key="MCU_LED_BLUE_BRI_OFF_KEY"
+		android:title="@string/MCU_LED_BLUE_BRI_OFF"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_BLUE_BRI_OFF"
+		android:entries="@array/MCU_BLUE_BRI_LEDs_array"
+		android:entryValues="@array/MCU_BLUE_BRI_LEDs_array_value">
+	</ListPreference>
+
+</PreferenceScreen>
