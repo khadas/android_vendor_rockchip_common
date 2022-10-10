@@ -113,6 +113,11 @@
 	<string name="MCU_LED_white">MCU LEDs</string>
 	<string name="SYS_LED_white">SYS LEDs</string>
 
+	<string name="LED_white">White LEDs</string>
+
+	<string name="MCU_LED_on_status">System On status</string>
+	<string name="MCU_LED_off_status">System Off status</string>
+
 
     <string-array name="LEDs_array">
         <item>Breath mode</item>
@@ -172,65 +177,29 @@
         <item>4</item>
     </string-array>
 
-	<string-array name="MCU_White_LEDs_array">
-        <item>Red LED</item>
-        <item>Green LED</item>
-        <item>Blue LED</item>
-        <item>Always on</item>
-		<item>Always off</item>
-    </string-array>
-    <string-array name="MCU_White_LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-		<item>5</item>
-    </string-array>
+	<string name="MCU_LED_ON">Always on</string>
+	<string name="MCU_LED_Breath">Breath mode</string>
+	<string name="MCU_LED_HeartBeat">HeartBeat mode</string>
 
-	<string name="MCU_LED_ON">Always on(System on)</string>
-	<string name="MCU_LED_OFF">Always off(System on)</string>
-	<string name="MCU_LED_Breath">Breath mode(System on)</string>
-	<string name="MCU_LED_HeartBeat">HeartBeat mode(System on)</string>
-	<string name="MCU_LED_RED_BRI">Red LED brightness level(System on)</string>
-	<string name="MCU_LED_GREEN_BRI">Green LED brightness level(System on)</string>
-	<string name="MCU_LED_BLUE_BRI">Blue LED brightness level(System on)</string>
-
-	<string name="MCU_LED_ON_OFF">Always on(System off)</string>
-	<string name="MCU_LED_OFF_OFF">Always off(System off)</string>
-	<string name="MCU_LED_Breath_OFF">Breath mode(System off)</string>
-	<string name="MCU_LED_HeartBeat_OFF">HeartBeat mode(System off)</string>
-	<string name="MCU_LED_RED_BRI_OFF">Red LED brightness level(System off)</string>
-	<string name="MCU_LED_GREEN_BRI_OFF">Green LED brightness level(System off)</string>
-	<string name="MCU_LED_BLUE_BRI_OFF">Blue LED brightness level(System off)</string>
-
-	<string-array name="MCU_ON_LEDs_array">
-        <item>Red LED</item>
-        <item>Green LED</item>
-        <item>Blue LED</item>
-        <item>White LED</item>
-    </string-array>
-    <string-array name="MCU_ON_LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
+	<string name="MCU_LED_ON_OFF">Always on</string>
+	<string name="MCU_LED_Breath_OFF">Breath mode</string>
+	<string name="MCU_LED_HeartBeat_OFF">HeartBeat mode</string>
 
 	<string-array name="MCU_OFF_LEDs_array">
-        <item>White LED</item>
+        <item>Off</item>
     </string-array>
     <string-array name="MCU_OFF_LEDs_array_value">
         <item>1</item>
     </string-array>
 
 	<string-array name="MCU_Breath_LEDs_array">
-        <item>Red LED</item>
-        <item>Green LED</item>
-        <item>Blue LED</item>
-		<item>RedGreen LED</item>
-		<item>RedBlue LED</item>
-		<item>GreenBlue LED</item>
-        <item>White LED</item>
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+		<item>RedGreen</item>
+		<item>RedBlue</item>
+		<item>GreenBlue</item>
+        <item>White</item>
     </string-array>
     <string-array name="MCU_Breath_LEDs_array_value">
         <item>1</item>
@@ -242,13 +211,13 @@
 		<item>7</item>
     </string-array>
 	<string-array name="MCU_HeartBeat_LEDs_array">
-        <item>Red LED</item>
-        <item>Green LED</item>
-        <item>Blue LED</item>
-		<item>RedGreen LED</item>
-		<item>RedBlue LED</item>
-		<item>GreenBlue LED</item>
-        <item>White LED</item>
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+		<item>RedGreen</item>
+		<item>RedBlue</item>
+		<item>GreenBlue</item>
+        <item>White</item>
     </string-array>
     <string-array name="MCU_HeartBeat_LEDs_array_value">
         <item>1</item>
@@ -278,12 +247,15 @@
         <item>5</item>
     </string-array>
 
-    <string name="MCU_RED_LED_ON_Brightness_title">Red LED Brightness level(ON)</string>
-	<string name="MCU_RED_LED_OFF_Brightness_title">Red LED Brightness level(OFF)</string>
-	<string name="MCU_GREEN_LED_ON_Brightness_title">Green LED Brightness level(ON)</string>
-	<string name="MCU_GRREN_LED_OFF_Brightness_title">Green LED Brightness level(OFF)</string>
-	<string name="MCU_BLUE_LED_ON_Brightness_title">Blue LED Brightness level(ON)</string>
-	<string name="MCU_BLUE_LED_OFF_Brightness_title">Blue LED Brightness level(OFF)</string>
+    <string name="MCU_RED_LED_ON_Brightness_title">Red LED Brightness level</string>
+	<string name="MCU_RED_LED_OFF_Brightness_title">Red LED Brightness level</string>
+	<string name="MCU_GREEN_LED_ON_Brightness_title">Green LED Brightness level</string>
+	<string name="MCU_GRREN_LED_OFF_Brightness_title">Green LED Brightness level</string>
+	<string name="MCU_BLUE_LED_ON_Brightness_title">Blue LED Brightness level</string>
+	<string name="MCU_BLUE_LED_OFF_Brightness_title">Blue LED Brightness level</string>
+
+    <string name="mipi_Brightness_title">MIPI Brightness level</string>
+    <string name="vbo_Brightness_title">VBO Brightness level</string>
 
     <string name="logoled_Brightness_title">Logo LED Brightness level</string>
     <string name="textview" translatable="false">TextView</string>

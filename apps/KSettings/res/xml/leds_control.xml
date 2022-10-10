@@ -9,7 +9,7 @@
             android:targetClass="com.khadas.ksettings.SYS_LEDs_Preference"
             android:targetPackage="com.khadas.ksettings" />
     </PreferenceScreen>
-	
+
 	<PreferenceScreen
         android:title="@string/MCU_LED_white"
         android:iconSpaceReserved="false">

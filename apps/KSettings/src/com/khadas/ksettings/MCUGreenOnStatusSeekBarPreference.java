@@ -14,7 +14,7 @@ import android.view.View;
 
 import java.io.IOException;
 
-public class MCUBlueOFFSeekBarPreference extends DialogPreference implements OnSeekBarChangeListener{
+public class MCUGreenOnStatusSeekBarPreference extends DialogPreference implements OnSeekBarChangeListener{
 
     private SeekBar seekBar;
     private TextView textView;
@@ -33,10 +33,10 @@ public class MCUBlueOFFSeekBarPreference extends DialogPreference implements OnS
 				//Log.d("hay1","Mipi=" + msg.arg1);
 				val = Integer.toHexString(msg.arg1);
                     try {
-						if(msg.arg1>=0 && msg.arg1 <=15){
-							ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2A0"+ val +" > /sys/class/mcu/mculed"});
+						if(msg.arg1 >= 0 && msg.arg1 <= 15){
+							ComApi.execCommand(new String[]{"sh", "-c", "echo 0x260"+ val +" > /sys/class/mcu/mculed"});
 						}else{
-							ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2A"+ val +" > /sys/class/mcu/mculed"});
+							ComApi.execCommand(new String[]{"sh", "-c", "echo 0x26"+ val +" > /sys/class/mcu/mculed"});
 						}
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -48,7 +48,7 @@ public class MCUBlueOFFSeekBarPreference extends DialogPreference implements OnS
         }
     };
 
-    public MCUBlueOFFSeekBarPreference(Context context, AttributeSet attrs) {
+    public MCUGreenOnStatusSeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
     }
@@ -64,9 +64,9 @@ public class MCUBlueOFFSeekBarPreference extends DialogPreference implements OnS
         try {
 			value = "100";
             //Log.d("hay2","Mipi=" + value);
-			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2401 > /sys/class/mcu/mculed"});
-			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2800 > /sys/class/mcu/mculed"});
-			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2900 > /sys/class/mcu/mculed"});
+			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2301 > /sys/class/mcu/mculed"});
+			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2500 > /sys/class/mcu/mculed"});
+			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2700 > /sys/class/mcu/mculed"});
             if(value.equals("") || value.contains("No such file or directory")){
                 textView.setText("100");
             }else {
