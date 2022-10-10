@@ -46,8 +46,6 @@ public class LEDs_Preference extends PreferenceActivity implements Preference.On
                 int index = listPreference.findIndexOfValue(stringValue);
                 // Set the summary to reflect the new value.
                 preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
-
-
             }  else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.

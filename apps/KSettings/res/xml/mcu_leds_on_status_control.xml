@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- SYSTEM ON -->
+	<ListPreference
+		android:key="MCU_LED_ON_KEY"
+		android:title="@string/MCU_LED_OFF_default"
+		android:summary="@string/MCU_White_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_OFF_default"
+		android:entries="@array/MCU_OFF_LEDs_array"
+		android:entryValues="@array/MCU_OFF_LEDs_array_value">
+	</ListPreference>
+
+	<com.khadas.ksettings.MCURedOnStatusSeekBarPreference
+        android:dialogTitle="@string/MCU_RED_LED_ON_Brightness_title"
+        android:title="@string/MCU_RED_LED_ON_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
+	<com.khadas.ksettings.MCUGreenOnStatusSeekBarPreference
+        android:dialogTitle="@string/MCU_GREEN_LED_ON_Brightness_title"
+        android:title="@string/MCU_GREEN_LED_ON_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
+	<com.khadas.ksettings.MCUBlueOnStatusSeekBarPreference
+        android:dialogTitle="@string/MCU_BLUE_LED_ON_Brightness_title"
+        android:title="@string/MCU_BLUE_LED_ON_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
+
+	<ListPreference
+		android:key="MCU_LED_Breath_ON_KEY"
+		android:title="@string/MCU_LED_Breath"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_Breath"
+		android:entries="@array/MCU_Breath_LEDs_array"
+		android:entryValues="@array/MCU_Breath_LEDs_array_value">
+	</ListPreference>
+	<ListPreference
+		android:key="MCU_LED_HeartBeat_ON_KEY"
+		android:title="@string/MCU_LED_HeartBeat"
+		android:summary="@string/MCU_LED_default"
+		android:defaultValue="1"
+		android:dialogTitle="@string/MCU_LED_HeartBeat"
+		android:entries="@array/MCU_HeartBeat_LEDs_array"
+		android:entryValues="@array/MCU_HeartBeat_LEDs_array_value">
+	</ListPreference>
+
+</PreferenceScreen>
