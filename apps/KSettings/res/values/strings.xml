@@ -260,98 +260,6 @@
 		<item>7</item>
     </string-array>
 
-	<string-array name="MCU_RED_BRI_LEDs_array">
-        <item>20</item>
-        <item>40</item>
-        <item>60</item>
-		<item>80</item>
-		<item>100</item>
-		<item>120</item>
-        <item>140</item>
-		<item>160</item>
-		<item>180</item>
-		<item>200</item>
-		<item>220</item>
-		<item>240</item>
-		<item>max</item>
-    </string-array>
-    <string-array name="MCU_RED_BRI_LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-		<item>5</item>
-		<item>6</item>
-		<item>7</item>
-		<item>8</item>
-		<item>9</item>
-		<item>10</item>
-		<item>11</item>
-		<item>12</item>
-		<item>13</item>
-    </string-array>
-	<string-array name="MCU_GREEN_BRI_LEDs_array">
-        <item>20</item>
-        <item>40</item>
-        <item>60</item>
-		<item>80</item>
-		<item>100</item>
-		<item>120</item>
-        <item>140</item>
-		<item>160</item>
-		<item>180</item>
-		<item>200</item>
-		<item>220</item>
-		<item>240</item>
-		<item>max</item>
-    </string-array>
-    <string-array name="MCU_GREEN_BRI_LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-		<item>5</item>
-		<item>6</item>
-		<item>7</item>
-		<item>8</item>
-		<item>9</item>
-		<item>10</item>
-		<item>11</item>
-		<item>12</item>
-		<item>13</item>
-    </string-array>
-	<string-array name="MCU_BLUE_BRI_LEDs_array">
-        <item>20</item>
-        <item>40</item>
-        <item>60</item>
-		<item>80</item>
-		<item>100</item>
-		<item>120</item>
-        <item>140</item>
-		<item>160</item>
-		<item>180</item>
-		<item>200</item>
-		<item>220</item>
-		<item>240</item>
-		<item>max</item>
-    </string-array>
-    <string-array name="MCU_BLUE_BRI_LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-		<item>5</item>
-		<item>6</item>
-		<item>7</item>
-		<item>8</item>
-		<item>9</item>
-		<item>10</item>
-		<item>11</item>
-		<item>12</item>
-		<item>13</item>
-    </string-array>
-
-
     <string name="FAN_default">Automatic speed control(temperature dependent)</string>
     <string-array name="FAN_array">
         <item>Off</item>
@@ -370,8 +278,13 @@
         <item>5</item>
     </string-array>
 
-    <string name="mipi_Brightness_title">MIPI Brightness level</string>
-    <string name="vbo_Brightness_title">VBO Brightness level</string>
+    <string name="MCU_RED_LED_ON_Brightness_title">Red LED Brightness level(ON)</string>
+	<string name="MCU_RED_LED_OFF_Brightness_title">Red LED Brightness level(OFF)</string>
+	<string name="MCU_GREEN_LED_ON_Brightness_title">Green LED Brightness level(ON)</string>
+	<string name="MCU_GRREN_LED_OFF_Brightness_title">Green LED Brightness level(OFF)</string>
+	<string name="MCU_BLUE_LED_ON_Brightness_title">Blue LED Brightness level(ON)</string>
+	<string name="MCU_BLUE_LED_OFF_Brightness_title">Blue LED Brightness level(OFF)</string>
+
     <string name="logoled_Brightness_title">Logo LED Brightness level</string>
     <string name="textview" translatable="false">TextView</string>
 

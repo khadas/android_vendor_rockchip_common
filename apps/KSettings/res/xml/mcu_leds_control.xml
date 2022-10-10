@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- SYSTEM ON -->
 	<ListPreference
-		android:key="MCU_LED_OFF_KEY"
+		android:key="MCU_LED_ON_KEY"
 		android:title="@string/MCU_LED_OFF"
 		android:summary="@string/MCU_White_LED_default"
 		android:defaultValue="1"
@@ -11,15 +11,26 @@
 		android:entries="@array/MCU_OFF_LEDs_array"
 		android:entryValues="@array/MCU_OFF_LEDs_array_value">
 	</ListPreference>
-	<ListPreference
-		android:key="MCU_LED_ON_KEY"
-		android:title="@string/MCU_LED_ON"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_ON"
-		android:entries="@array/MCU_ON_LEDs_array"
-		android:entryValues="@array/MCU_ON_LEDs_array_value">
-	</ListPreference>
+
+	<com.khadas.ksettings.MCURedONSeekBarPreference
+        android:dialogTitle="@string/MCU_RED_LED_ON_Brightness_title"
+        android:title="@string/MCU_RED_LED_ON_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
+	<com.khadas.ksettings.MCUGreenONSeekBarPreference
+        android:dialogTitle="@string/MCU_GREEN_LED_ON_Brightness_title"
+        android:title="@string/MCU_GREEN_LED_ON_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
+	<com.khadas.ksettings.MCUBlueONSeekBarPreference
+        android:dialogTitle="@string/MCU_BLUE_LED_ON_Brightness_title"
+        android:title="@string/MCU_BLUE_LED_ON_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
+
 	<ListPreference
 		android:key="MCU_LED_Breath_KEY"
 		android:title="@string/MCU_LED_Breath"
@@ -39,54 +50,15 @@
 		android:entryValues="@array/MCU_HeartBeat_LEDs_array_value">
 	</ListPreference>
 
-   	<ListPreference
-		android:key="MCU_LED_RED_BRI_KEY"
-		android:title="@string/MCU_LED_RED_BRI"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_RED_BRI"
-		android:entries="@array/MCU_RED_BRI_LEDs_array"
-		android:entryValues="@array/MCU_RED_BRI_LEDs_array_value">
-	</ListPreference>
-	
-	<ListPreference
-		android:key="MCU_LED_GREEN_BRI_KEY"
-		android:title="@string/MCU_LED_GREEN_BRI"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_GREEN_BRI"
-		android:entries="@array/MCU_GREEN_BRI_LEDs_array"
-		android:entryValues="@array/MCU_GREEN_BRI_LEDs_array_value">
-	</ListPreference>
-	
-	<ListPreference
-		android:key="MCU_LED_BLUE_BRI_KEY"
-		android:title="@string/MCU_LED_BLUE_BRI"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_BLUE_BRI"
-		android:entries="@array/MCU_BLUE_BRI_LEDs_array"
-		android:entryValues="@array/MCU_BLUE_BRI_LEDs_array_value">
-	</ListPreference>
-
 	<!-- SYSTEM OFF -->
 	<ListPreference
-		android:key="MCU_LED_OFF_OFF_KEY"
+		android:key="MCU_LED_OFF_KEY"
 		android:title="@string/MCU_LED_OFF_OFF"
 		android:summary="@string/MCU_White_LED_default"
 		android:defaultValue="1"
 		android:dialogTitle="@string/MCU_LED_OFF_OFF"
 		android:entries="@array/MCU_OFF_LEDs_array"
 		android:entryValues="@array/MCU_OFF_LEDs_array_value">
-	</ListPreference>
-	<ListPreference
-		android:key="MCU_LED_ON_OFF_KEY"
-		android:title="@string/MCU_LED_ON_OFF"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_ON_OFF"
-		android:entries="@array/MCU_ON_LEDs_array"
-		android:entryValues="@array/MCU_ON_LEDs_array_value">
 	</ListPreference>
 	<ListPreference
 		android:key="MCU_LED_Breath_OFF_KEY"
@@ -107,34 +79,23 @@
 		android:entryValues="@array/MCU_HeartBeat_LEDs_array_value">
 	</ListPreference>
 
-   	<ListPreference
-		android:key="MCU_LED_RED_BRI_OFF_KEY"
-		android:title="@string/MCU_LED_RED_BRI_OFF"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_RED_BRI_OFF"
-		android:entries="@array/MCU_RED_BRI_LEDs_array"
-		android:entryValues="@array/MCU_RED_BRI_LEDs_array_value">
-	</ListPreference>
-	
-	<ListPreference
-		android:key="MCU_LED_GREEN_BRI_OFF_KEY"
-		android:title="@string/MCU_LED_GREEN_BRI_OFF"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_GREEN_BRI_OFF"
-		android:entries="@array/MCU_GREEN_BRI_LEDs_array"
-		android:entryValues="@array/MCU_GREEN_BRI_LEDs_array_value">
-	</ListPreference>
-	
-	<ListPreference
-		android:key="MCU_LED_BLUE_BRI_OFF_KEY"
-		android:title="@string/MCU_LED_BLUE_BRI_OFF"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_BLUE_BRI_OFF"
-		android:entries="@array/MCU_BLUE_BRI_LEDs_array"
-		android:entryValues="@array/MCU_BLUE_BRI_LEDs_array_value">
-	</ListPreference>
+	<com.khadas.ksettings.MCURedOFFSeekBarPreference
+        android:dialogTitle="@string/MCU_RED_LED_OFF_Brightness_title"
+        android:title="@string/MCU_RED_LED_OFF_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
+	<com.khadas.ksettings.MCUGreenOFFSeekBarPreference
+        android:dialogTitle="@string/MCU_GRREN_LED_OFF_Brightness_title"
+        android:title="@string/MCU_GRREN_LED_OFF_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
+	<com.khadas.ksettings.MCUBlueOFFSeekBarPreference
+        android:dialogTitle="@string/MCU_BLUE_LED_OFF_Brightness_title"
+        android:title="@string/MCU_BLUE_LED_OFF_Brightness_title"
+        android:summary="100"
+        android:key="mipi_Brightness"
+        android:dialogLayout="@layout/brightness_prefs" />
 
 </PreferenceScreen>
