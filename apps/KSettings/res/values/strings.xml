@@ -137,6 +137,7 @@
 	<string name="MCU_LED_white_default">Always on</string>
 	<string name="MCU_LED_ON_default">Always on</string>
 	<string name="MCU_LED_OFF_default">Always off</string>
+	<string name="MCU_LED_ON_OFF_default">Always on/off</string>
 	<string name="MCU_LED_default">Red LED</string>
 	<string name="MCU_White_LED_default">White LED</string>
 
@@ -185,11 +186,13 @@
 	<string name="MCU_LED_Breath_OFF">Breath mode</string>
 	<string name="MCU_LED_HeartBeat_OFF">HeartBeat mode</string>
 
-	<string-array name="MCU_OFF_LEDs_array">
+	<string-array name="MCU_LEDs_array">
         <item>Off</item>
+		<item>On</item>
     </string-array>
-    <string-array name="MCU_OFF_LEDs_array_value">
+    <string-array name="MCU_LEDs_array_value">
         <item>1</item>
+		<item>2</item>
     </string-array>
 
 	<string-array name="MCU_Breath_LEDs_array">

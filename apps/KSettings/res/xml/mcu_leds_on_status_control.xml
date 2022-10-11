@@ -4,12 +4,12 @@
 	<!-- SYSTEM ON -->
 	<ListPreference
 		android:key="MCU_LED_ON_KEY"
-		android:title="@string/MCU_LED_OFF_default"
+		android:title="@string/MCU_LED_ON_OFF_default"
 		android:summary="@string/MCU_White_LED_default"
 		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_OFF_default"
-		android:entries="@array/MCU_OFF_LEDs_array"
-		android:entryValues="@array/MCU_OFF_LEDs_array_value">
+		android:dialogTitle="@string/MCU_LED_ON_OFF_default"
+		android:entries="@array/MCU_LEDs_array"
+		android:entryValues="@array/MCU_LEDs_array_value">
 	</ListPreference>
 
 	<com.khadas.ksettings.MCURedOnStatusSeekBarPreference

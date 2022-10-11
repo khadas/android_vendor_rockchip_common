@@ -68,6 +68,16 @@ public class MCU_LEDs_Off_Status_Preference extends PreferenceActivity implement
                                 e.printStackTrace();
                             }
                             break;
+						case 1:
+                            try {
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2401 > /sys/class/mcu/mculed"});
+								ComApi.execCommand(new String[]{"sh", "-c", "echo 0x28FF > /sys/class/mcu/mculed"});
+								ComApi.execCommand(new String[]{"sh", "-c", "echo 0x29FF > /sys/class/mcu/mculed"});
+								ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2AFF > /sys/class/mcu/mculed"});
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            break;
                     }
 				}else if(MCU_LED_Breath_OFF_KEY.equals(key)){
 					//Log.d("hay","Breath===" + index);
