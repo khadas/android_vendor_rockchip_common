@@ -66,28 +66,28 @@ public class SYS_LEDs_Preference extends PreferenceActivity implements Preferenc
                     switch(index){
                         case 0:
                             try {
-                                ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/led_r/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 1:
                             try {
-                                ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/led_r/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/red_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 2:
                             try {
-                                ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/led_r/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/red_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 3:
                             try {
-                                ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/led_r/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/red_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -101,28 +101,28 @@ public class SYS_LEDs_Preference extends PreferenceActivity implements Preferenc
                     switch(index){
                         case 0:
                             try {
-                                ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/led_g/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 1:
                             try {
-                                ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/led_g/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/green_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 2:
                             try {
-                                ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/led_g/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/green_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 3:
                             try {
-                                ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/led_g/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/green_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
