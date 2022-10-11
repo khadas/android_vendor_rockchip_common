@@ -69,8 +69,17 @@ public class MCU_LEDs_On_Status_Preference extends PreferenceActivity implements
                                 e.printStackTrace();
                             }
                             break;
+                        case 1:
+                            try {
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2301 > /sys/class/mcu/mculed"});
+								ComApi.execCommand(new String[]{"sh", "-c", "echo 0x25FF > /sys/class/mcu/mculed"});
+								ComApi.execCommand(new String[]{"sh", "-c", "echo 0x26FF > /sys/class/mcu/mculed"});
+								ComApi.execCommand(new String[]{"sh", "-c", "echo 0x27FF > /sys/class/mcu/mculed"});
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            break;
                     }
-                    SystemProperties.set("persist.sys.MCU_led_OFF_control", "" + index);
 				}else if(MCU_LED_Breath_ON_KEY.equals(key)){
 					//Log.d("hay","Breath===" + index);
                     switch(index){
@@ -124,7 +133,6 @@ public class MCU_LEDs_On_Status_Preference extends PreferenceActivity implements
                             }
                             break;
                     }
-                    SystemProperties.set("persist.sys.MCU_led_Breath_control", "" + index);
 				}else if(MCU_LED_HeartBeat_ON_KEY.equals(key)){
 					//Log.d("hay","HeartBeat===" + index);
                     switch(index){
@@ -178,7 +186,6 @@ public class MCU_LEDs_On_Status_Preference extends PreferenceActivity implements
                             }
                             break;
                     }
-                    SystemProperties.set("persist.sys.MCU_led_HeartBeat_control", "" + index);
 				}
             }  else {
                 // For all other preferences, set the summary to the value's

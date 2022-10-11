@@ -94,6 +94,7 @@ public class MCURedOnStatusSeekBarPreference extends DialogPreference implements
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress,
                                   boolean fromUser) {
+		Log.d("hay2","Mipi=" + progress);
         textView.setText("" + progress);
         mHandler.removeMessages(MSG_WHAT_SET_BACKLIGHT);
         Message msg = new Message();
