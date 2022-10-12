@@ -141,37 +141,47 @@
 	<string name="MCU_LED_default">Red LED</string>
 	<string name="MCU_White_LED_default">White LED</string>
 
-    <string-array name="Red_LEDs_array">
-        <item>Always off</item>
-        <item>Always on</item>
-        <item>Breath mode</item>
-        <item>Heartbeat mode</item>
+	<string name="SYS_LED_ON">Always on</string>
+	<string name="SYS_LED_Breath">Breath mode</string>
+	<string name="SYS_LED_HeartBeat">HeartBeat mode</string>
+
+	<string name="SYS_LED_ON_OFF">Always on/off</string>
+	<string name="SYS_LED_Breath_OFF">Breath mode</string>
+	<string name="SYS_LED_HeartBeat_OFF">HeartBeat mode</string>
+
+	<string-array name="SYS_Always_on_off_array">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+		<item>Off</item>
+        <item>On</item>
     </string-array>
-    <string-array name="Red_LEDs_array_value">
+    <string-array name="SYS_Always_on_off_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+		<item>5</item>
+    </string-array>
+	<string-array name="SYS_Breath_mode_array">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>White</item>
+    </string-array>
+    <string-array name="SYS_Breath_mode_array_value">
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
     </string-array>
-    <string-array name="Green_LEDs_array">
-        <item>Always off</item>
-        <item>Always on</item>
-        <item>Breath mode</item>
-        <item>Heartbeat mode</item>
+	<string-array name="SYS_HeartBeat_mode_array">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>White</item>
     </string-array>
-    <string-array name="Green_LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-    <string-array name="Blue_LEDs_array">
-        <item>Always off</item>
-        <item>Always on</item>
-        <item>Breath mode</item>
-        <item>Heartbeat mode</item>
-    </string-array>
-    <string-array name="Blue_LEDs_array_value">
+    <string-array name="SYS_HeartBeat_mode_array_value">
         <item>1</item>
         <item>2</item>
         <item>3</item>
