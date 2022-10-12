@@ -30,8 +30,8 @@ public class MCURedOnStatusSeekBarPreference extends DialogPreference implements
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_WHAT_SET_BACKLIGHT:
-				//Log.d("hay1","Mipi=" + msg.arg1);
-				val = Integer.toHexString(msg.arg1);
+					//Log.d("hay1","Brightness=" + msg.arg1);
+					val = Integer.toHexString(msg.arg1);
                     try {
 						if(msg.arg1>=0 && msg.arg1 <=15){
 							ComApi.execCommand(new String[]{"sh", "-c", "echo 0x250"+ val +" > /sys/class/mcu/mculed"});
@@ -63,7 +63,7 @@ public class MCURedOnStatusSeekBarPreference extends DialogPreference implements
 
         try {
 			value = "100";
-            //Log.d("hay2","Mipi=" + value);
+            //Log.d("hay2","Brightness=" + value);
 			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2301 > /sys/class/mcu/mculed"});
 			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2600 > /sys/class/mcu/mculed"});
 			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2700 > /sys/class/mcu/mculed"});
@@ -71,7 +71,7 @@ public class MCURedOnStatusSeekBarPreference extends DialogPreference implements
                 textView.setText("100");
             }else {
 				textView.setText(value);
-				//Log.d("hay3","Mipi=" + val);
+				//Log.d("hay3","Brightness=" + value);
 				if(Integer.parseInt(value) >= 0 && Integer.parseInt(value) <= 255) {
 					seekBar.setProgress(Integer.parseInt(value));
 				}
@@ -84,17 +84,18 @@ public class MCURedOnStatusSeekBarPreference extends DialogPreference implements
     @Override
     protected void onDialogClosed(boolean positiveResult) {
         // TODO Auto-generated method stub
+		//Log.d("hay4","positiveResult=" + positiveResult);
         if (positiveResult) {
-            Log.i("Dialog closed", "You click positive button");
+            Log.i("Dialog closed", "You click positive button1");
         } else {
-            Log.i("Dialog closed", "You click negative button");
+            Log.i("Dialog closed", "You click negative button2");
         }
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress,
                                   boolean fromUser) {
-		Log.d("hay2","Mipi=" + progress);
+		//Log.d("hay5","Brightness=" + progress);
         textView.setText("" + progress);
         mHandler.removeMessages(MSG_WHAT_SET_BACKLIGHT);
         Message msg = new Message();
