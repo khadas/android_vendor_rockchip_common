@@ -83,8 +83,8 @@
         <MediaCodec name="c2.android.flac.decoder" type="audio/flac" update="true">
             <Alias name="OMX.google.flac.decoder" />
             <Limit name="channel-count" max="8" />
-            <Limit name="sample-rate" ranges="8000-96000" />
-            <Limit name="bitrate" range="1-10000000" />
+            <Limit name="sample-rate" ranges="8000-655350" />
+            <Limit name="bitrate" range="1-21000000" />
             <Limit name="concurrent-instances" max="32" />
         </MediaCodec>
         <MediaCodec name="c2.android.gsm.decoder" type="audio/gsm" domain="telephony" update="true">
@@ -118,11 +118,11 @@
         </MediaCodec>
         <MediaCodec name="c2.android.avc.decoder" type="video/avc" update="true">
             <Alias name="OMX.google.h264.decoder" />
-            <Limit name="size" min="2x2" max="1280x720" />
-            <Limit name="alignment" value="8x8" />
+            <Limit name="size" min="2x2" max="1920x1080" />
+            <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <!-- profiles and levels:  ProfileHigh : Level31 -->
-            <Limit name="block-count" range="1-3600" />
+            <Limit name="block-count" range="1-8160" />
             <Limit name="blocks-per-second" range="1-108000" />
             <Limit name="bitrate" range="1-40000000" />
             <Limit name="concurrent-instances" max="32" />
@@ -212,7 +212,7 @@
         </MediaCodec>
         <MediaCodec name="c2.android.flac.encoder" type="audio/flac" update="true">
             <Alias name="OMX.google.flac.encoder" />
-            <Limit name="channel-count" max="2" />
+            <Limit name="channel-count" max="8" />
             <Limit name="sample-rate" ranges="1-655350" />
             <Limit name="bitrate" range="1-21000000" />
             <Limit name="complexity" range="0-8"  default="5" />
