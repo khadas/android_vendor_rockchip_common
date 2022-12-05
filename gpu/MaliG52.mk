@@ -6,15 +6,8 @@ PRODUCT_PACKAGES += \
         libgpudataproducer \
         vulkan.$(TARGET_BOARD_PLATFORM)
 
-DRIVER_PATH := kernel/drivers/gpu/arm/bifrost/bifrost_kbase.ko
-HAS_BUILD_KERNEL := $(shell test -e $(DRIVER_PATH) && echo true)
-
-ifneq ($(strip $(HAS_BUILD_KERNEL)), true)
+ifeq ($(strip $(BOARD_BUILD_GKI)), true)
 BOARD_VENDOR_KERNEL_MODULES += \
-	vendor/rockchip/common/gpu/MaliG52/lib/modules/mali_kbase.ko
-else
-BOARD_VENDOR_KERNEL_MODULES += \
-	$(DRIVER_PATH)
+	vendor/rockchip/common/gpu/MaliG52/lib/modules/bifrost_kbase.ko
 endif
-
 endif
