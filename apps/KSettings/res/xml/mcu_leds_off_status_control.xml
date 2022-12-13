@@ -4,11 +4,11 @@
 
 	<!-- SYSTEM OFF -->
 	<ListPreference
-		android:key="MCU_LED_OFF_KEY"
-		android:title="@string/MCU_LED_ON_OFF_default"
-		android:summary="@string/MCU_White_LED_default"
+		android:key="MCU_LEDS_OFF_MODE_KEY"
+		android:title="@string/MCU_LEDS_mode"
+		android:summary="@string/MCU_LEDS_off_mode_default"
 		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_ON_OFF_default"
+		android:dialogTitle="@string/MCU_LEDS_mode"
 		android:entries="@array/MCU_LEDs_array"
 		android:entryValues="@array/MCU_LEDs_array_value">
 	</ListPreference>
@@ -16,39 +16,21 @@
 	<com.khadas.ksettings.MCURedOffStatusSeekBarPreference
         android:dialogTitle="@string/MCU_RED_LED_OFF_Brightness_title"
         android:title="@string/MCU_RED_LED_OFF_Brightness_title"
-        android:summary="100"
-        android:key="mipi_Brightness"
+        android:summary="255"
+        android:key="MCU_RED_LED_OFF_BL_KEY"
         android:dialogLayout="@layout/brightness_prefs" />
 	<com.khadas.ksettings.MCUGreenOffStatusSeekBarPreference
         android:dialogTitle="@string/MCU_GRREN_LED_OFF_Brightness_title"
         android:title="@string/MCU_GRREN_LED_OFF_Brightness_title"
-        android:summary="100"
-        android:key="mipi_Brightness"
+        android:summary="0"
+        android:key="MCU_GREEN_LED_OFF_BL_KEY"
         android:dialogLayout="@layout/brightness_prefs" />
 	<com.khadas.ksettings.MCUBlueOffStatusSeekBarPreference
         android:dialogTitle="@string/MCU_BLUE_LED_OFF_Brightness_title"
         android:title="@string/MCU_BLUE_LED_OFF_Brightness_title"
-        android:summary="100"
-        android:key="mipi_Brightness"
+        android:summary="0"
+        android:key="MCU_BLUE_LED_OFF_BL_KEY"
         android:dialogLayout="@layout/brightness_prefs" />
 
-	<ListPreference
-		android:key="MCU_LED_Breath_OFF_KEY"
-		android:title="@string/MCU_LED_Breath_OFF"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_Breath_OFF"
-		android:entries="@array/MCU_Breath_LEDs_array"
-		android:entryValues="@array/MCU_Breath_LEDs_array_value">
-	</ListPreference>
-	<ListPreference
-		android:key="MCU_LED_HeartBeat_OFF_KEY"
-		android:title="@string/MCU_LED_HeartBeat_OFF"
-		android:summary="@string/MCU_LED_default"
-		android:defaultValue="1"
-		android:dialogTitle="@string/MCU_LED_HeartBeat_OFF"
-		android:entries="@array/MCU_HeartBeat_LEDs_array"
-		android:entryValues="@array/MCU_HeartBeat_LEDs_array_value">
-	</ListPreference>
 
 </PreferenceScreen>
