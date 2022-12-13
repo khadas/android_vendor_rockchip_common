@@ -19,7 +19,7 @@ public class MCUGreenOnStatusSeekBarPreference extends DialogPreference implemen
     private SeekBar seekBar;
     private TextView textView;
 
-    private String value;
+    private String value = "255";
 	private String val;
 
 
@@ -30,8 +30,9 @@ public class MCUGreenOnStatusSeekBarPreference extends DialogPreference implemen
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_WHAT_SET_BACKLIGHT:
-				//Log.d("hay1","Mipi=" + msg.arg1);
+				SystemProperties.set("persist.sys.mcu_green_on_bl_value", String.valueOf(msg.arg1));
 				val = Integer.toHexString(msg.arg1);
+                    //Log.d("hlm1","Mipi=" + val);
                     try {
 						if(msg.arg1 >= 0 && msg.arg1 <= 15){
 							ComApi.execCommand(new String[]{"sh", "-c", "echo 0x260"+ val +" > /sys/class/mcu/mculed"});
@@ -61,23 +62,14 @@ public class MCUGreenOnStatusSeekBarPreference extends DialogPreference implemen
         textView = (TextView) view.findViewById(R.id.textView1);
         seekBar.setOnSeekBarChangeListener(this);
 
-        try {
-			value = "100";
-            //Log.d("hay2","Mipi=" + value);
-			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2301 > /sys/class/mcu/mculed"});
-			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2500 > /sys/class/mcu/mculed"});
-			ComApi.execCommand(new String[]{"sh", "-c", "echo 0x2700 > /sys/class/mcu/mculed"});
-            if(value.equals("") || value.contains("No such file or directory")){
-                textView.setText("100");
-            }else {
-				textView.setText(value);
-				//Log.d("hay3","Mipi=" + val);
-				if(Integer.parseInt(value) >= 0 && Integer.parseInt(value) <= 255) {
-					seekBar.setProgress(Integer.parseInt(value));
-				}
-			}
-        } catch (IOException e) {
-            e.printStackTrace();
+        value = SystemProperties.get("persist.sys.mcu_green_on_bl_value");
+        //Log.d("hlm1","Mipi=" + value);
+        if(value.equals("")){
+            value = "255";
+        }
+        textView.setText(value);
+        if(Integer.parseInt(value) >= 0 && Integer.parseInt(value) <= 255) {
+            seekBar.setProgress(Integer.parseInt(value));
         }
     }
 

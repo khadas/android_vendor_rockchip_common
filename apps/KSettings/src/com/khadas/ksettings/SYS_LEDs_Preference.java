@@ -13,14 +13,14 @@ import java.io.IOException;
 
 public class SYS_LEDs_Preference extends PreferenceActivity implements Preference.OnPreferenceClickListener {
 	
-    private ListPreference SYS_Always_On_Off_Preference;
-    private ListPreference SYS_Breath_mode_Preference;
-    private ListPreference SYS_HeartBeat_mode_Preference;
+    private ListPreference LED_Red_Preference;
+    private ListPreference LED_Green_Preference;
+    private ListPreference LED_Blue_Preference;
 
-    private static final String SYS_Always_On_Off_KEY = "SYS_Always_On_Off_KEY";
-    private static final String SYS_Breath_mode_KEY = "SYS_Breath_mode_KEY";
-    private static final String SYS_HeartBeat_mode_KEY= "SYS_HeartBeat_mode_KEY";
-	
+    private static final String Red_LED_KEY = "Red_LED_KEY";
+    private static final String Green_LED_KEY = "Green_LED_KEY";
+    private static final String Blue_LED_KEY = "Blue_LED_KEY";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +30,12 @@ public class SYS_LEDs_Preference extends PreferenceActivity implements Preferenc
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        SYS_Always_On_Off_Preference = (ListPreference) findPreference(SYS_Always_On_Off_KEY);
-        bindPreferenceSummaryToValue(SYS_Always_On_Off_Preference);
-        SYS_Breath_mode_Preference = (ListPreference) findPreference(SYS_Breath_mode_KEY);
-        bindPreferenceSummaryToValue(SYS_Breath_mode_Preference);
-        SYS_HeartBeat_mode_Preference = (ListPreference) findPreference(SYS_HeartBeat_mode_KEY);
-        bindPreferenceSummaryToValue(SYS_HeartBeat_mode_Preference);
+        LED_Red_Preference = (ListPreference) findPreference(Red_LED_KEY);
+        bindPreferenceSummaryToValue(LED_Red_Preference);
+        LED_Green_Preference = (ListPreference) findPreference(Green_LED_KEY);
+        bindPreferenceSummaryToValue(LED_Green_Preference);		
+        LED_Blue_Preference = (ListPreference) findPreference(Blue_LED_KEY);
+        bindPreferenceSummaryToValue(LED_Blue_Preference);
 
     }
 
@@ -60,141 +60,110 @@ public class SYS_LEDs_Preference extends PreferenceActivity implements Preferenc
                 // Set the summary to reflect the new value.
                 preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
 
-                if (SYS_Always_On_Off_KEY.equals(key)){
+                if (Red_LED_KEY.equals(key)){
                     //Log.d("wjh","1===" + index);
                     switch(index){
                         case 0:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/blue_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/red_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 1:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/blue_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/green_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/red_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 2:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/red_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 3:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/blue_led/trigger"});
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-					    case 4:
-                            try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/red_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                     }
+                    SystemProperties.set("persist.sys.Red_led_control", "" + index);
 
                 }
-                else if (SYS_Breath_mode_KEY.equals(key)){
+                else if (Green_LED_KEY.equals(key)){
                     //Log.d("wjh","1===" + index);
                     switch(index){
                         case 0:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 1:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off> /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/green_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 2:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/green_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 3:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/green_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                     }
+                    SystemProperties.set("persist.sys.Green_led_control", "" + index);
 
-                }else if(SYS_HeartBeat_mode_KEY.equals(key)){
+                }else if(Blue_LED_KEY.equals(key)){
                     //Log.d("wjh","1===" + index);
                     switch(index){
                         case 0:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/blue_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 1:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo default-on > /sys/class/leds/blue_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 2:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo off > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo timer > /sys/class/leds/blue_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 3:
                             try {
-								ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/red_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/green_led/trigger"});
-								ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/blue_led/trigger"});
+                                ComApi.execCommand(new String[]{"sh", "-c", "echo heartbeat > /sys/class/leds/blue_led/trigger"});
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                     }
+                    SystemProperties.set("persist.sys.Blue_led_control", "" + index);
 
                 }
-
             }  else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
