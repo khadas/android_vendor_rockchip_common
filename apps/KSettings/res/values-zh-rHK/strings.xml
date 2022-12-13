@@ -94,32 +94,6 @@
     </string-array>
 
     <string name="LED_white">白色LED燈</string>
-    <string name="LED_red">紅色LED燈</string>
-    <string name="LEDs_default">一直打開</string>
-    <string-array name="LEDs_array">
-        <item>呼吸模式</item>
-        <item>一直打開</item>
-        <item>一直關閉</item>
-    </string-array>
-    <string-array name="LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string name="LED_red_default">一直關閉</string>
-    <string-array name="Red_LEDs_array">
-        <item>一直關閉</item>
-        <item>一直打開</item>
-        <item>呼吸模式</item>
-        <item>心跳模式</item>
-    </string-array>
-    <string-array name="Red_LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
 
     <string name="FAN_default">關閉</string>
     <string-array name="FAN_array">

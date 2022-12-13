@@ -7,8 +7,10 @@
     <string name="PowerKey">PowerKey definition</string>
     <string name="FunctionKey">FunctionKey definition</string>
     <string name="LEDs">LEDs control</string>
-    <string name="SYS_LEDs">SYS LEDs control</string>
-    <string name="MCU_LEDs">MCU LEDs control</string>
+    <string name="SYS_LEDs" translatable="false">SYS LEDs control</string>
+    <string name="MCU_LEDs" translatable="false">MCU LEDs control</string>
+    <string name="MCU_System_ON_Status" translatable="false">MCU LEDs System On control</string>
+    <string name="MCU_System_OFF_Status" translatable="false">MCU LEDs System Shutdown control</string>
     <string name="Cooling_fan">Cooling fan</string>
     <string name="WOL">WOL</string>
     <string name="Status_bar_control">Status bar control</string>
@@ -100,148 +102,97 @@
         <item>2</item>
     </string-array>
 
-    <string name="LED_red">Red LED</string>
-    <string name="LED_green">Green LED</string>
-    <string name="LED_blue">Blue LED</string>
-    <string name="Logo_LED" translatable="false">Logo LED</string>
-    <string name="LEDs_default">Always on</string>
+    <string name="LED_red" translatable="false">Sys Red LED</string>
+    <string name="LED_green" translatable="false">Sys Green LED</string>
+    <string name="LED_blue" translatable="false">Sys Blue LED</string>
 
-	<string name="MCU_LED_red">MCU Red LED</string>
-    <string name="MCU_LED_green">MCU Green LED</string>
-    <string name="MCU_LED_blue">MCU Blue LED</string>
-
-	<string name="MCU_LED_white">MCU LEDs</string>
-	<string name="SYS_LED_white">SYS LEDs</string>
-
-	<string name="LED_white">White LEDs</string>
-
-	<string name="MCU_LED_on_status">System On status</string>
-	<string name="MCU_LED_off_status">System Off status</string>
-
-
-    <string-array name="LEDs_array">
-        <item>Breath mode</item>
-        <item>Always on</item>
+    <string name="LED_red_default" translatable="false">Heartbeat mode</string>
+    <string name="LED_green_default" translatable="false">Heartbeat mode</string>
+    <string name="LED_blue_default" translatable="false">Heartbeat mode</string>
+    <string-array name="Red_LEDs_array">
         <item>Always off</item>
+        <item>Always on</item>
+        <item>Time mode</item>
+        <item>Heartbeat mode</item>
     </string-array>
-    <string-array name="LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string name="LED_red_default">Always on</string>
-    <string name="LED_green_default">Always off</string>
-    <string name="LED_blue_default">Always off</string>
-
-	<string name="MCU_LED_white_default">Always on</string>
-	<string name="MCU_LED_ON_default">Always on</string>
-	<string name="MCU_LED_OFF_default">Always off</string>
-	<string name="MCU_LED_ON_OFF_default">Always on/off</string>
-	<string name="MCU_LED_default">Red LED</string>
-	<string name="MCU_White_LED_default">White LED</string>
-
-	<string name="SYS_LED_ON">Always on</string>
-	<string name="SYS_LED_Breath">Breath mode</string>
-	<string name="SYS_LED_HeartBeat">HeartBeat mode</string>
-
-	<string name="SYS_LED_ON_OFF">Always on/off</string>
-	<string name="SYS_LED_Breath_OFF">Breath mode</string>
-	<string name="SYS_LED_HeartBeat_OFF">HeartBeat mode</string>
-
-	<string-array name="SYS_Always_on_off_array">
-        <item>Red</item>
-        <item>Green</item>
-        <item>Blue</item>
-		<item>Off</item>
-        <item>On</item>
-    </string-array>
-    <string-array name="SYS_Always_on_off_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-		<item>5</item>
-    </string-array>
-	<string-array name="SYS_Breath_mode_array">
-        <item>Red</item>
-        <item>Green</item>
-        <item>Blue</item>
-        <item>White</item>
-    </string-array>
-    <string-array name="SYS_Breath_mode_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-	<string-array name="SYS_HeartBeat_mode_array">
-        <item>Red</item>
-        <item>Green</item>
-        <item>Blue</item>
-        <item>White</item>
-    </string-array>
-    <string-array name="SYS_HeartBeat_mode_array_value">
+    <string-array name="Red_LEDs_array_value">
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
     </string-array>
 
-	<string name="MCU_LED_ON">Always on</string>
-	<string name="MCU_LED_Breath">Breath mode</string>
-	<string name="MCU_LED_HeartBeat">HeartBeat mode</string>
+    <string-array name="Green_LEDs_array">
+        <item>Always off</item>
+        <item>Always on</item>
+        <item>Time mode</item>
+        <item>Heartbeat mode</item>
+    </string-array>
+    <string-array name="Green_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 
-	<string name="MCU_LED_ON_OFF">Always on</string>
-	<string name="MCU_LED_Breath_OFF">Breath mode</string>
-	<string name="MCU_LED_HeartBeat_OFF">HeartBeat mode</string>
+    <string-array name="Blue_LEDs_array">
+        <item>Always off</item>
+        <item>Always on</item>
+        <item>Time mode</item>
+        <item>Heartbeat mode</item>
+    </string-array>
+    <string-array name="Blue_LEDs_array_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string name="MCU_LED_white" translatable="false">MCU LEDs</string>
+    <string name="SYS_LED_white" translatable="false">SYS LEDs</string>
 
-	<string-array name="MCU_LEDs_array">
-        <item>Off</item>
-		<item>On</item>
+    <string name="LED_white">White LEDs</string>
+
+    <string name="MCU_LED_on_status" translatable="false">System On status</string>
+    <string name="MCU_LED_off_status" translatable="false">System Shutdown status</string>
+    <string name="MCU_LEDS_mode" translatable="false">MCU LEDS mode</string>
+    <string name="MCU_LEDS_on_mode_default" translatable="false">RGB off</string>
+    <string name="MCU_LEDS_off_mode_default" translatable="false">RGB on</string>
+    <string-array name="MCU_LEDs_array">
+        <item>RGB off</item>
+        <item>RGB on</item>
+        <item>R--breath mode</item>
+	<item>G--breath mode</item>
+	<item>B--breath mode</item>
+	<item>RG--breath mode</item>
+	<item>RB--breath mode</item>
+	<item>GB--breath mode</item>
+	<item>RGB--breath mode</item>
+        <item>R--heartbeat mode</item>
+	<item>G--heartbeat mode</item>
+	<item>B--heartbeat mode</item>
+	<item>RG--heartbeat mode</item>
+	<item>RB--heartbeat mode</item>
+	<item>GB--heartbeat mode</item>
+	<item>RGB--heartbeat mode</item>
     </string-array>
     <string-array name="MCU_LEDs_array_value">
-        <item>1</item>
-		<item>2</item>
-    </string-array>
-
-	<string-array name="MCU_Breath_LEDs_array">
-        <item>Red</item>
-        <item>Green</item>
-        <item>Blue</item>
-		<item>RedGreen</item>
-		<item>RedBlue</item>
-		<item>GreenBlue</item>
-        <item>White</item>
-    </string-array>
-    <string-array name="MCU_Breath_LEDs_array_value">
+    	<item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
-		<item>5</item>
-		<item>6</item>
-		<item>7</item>
+    	<item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    	<item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    	<item>15</item>	
     </string-array>
-	<string-array name="MCU_HeartBeat_LEDs_array">
-        <item>Red</item>
-        <item>Green</item>
-        <item>Blue</item>
-		<item>RedGreen</item>
-		<item>RedBlue</item>
-		<item>GreenBlue</item>
-        <item>White</item>
-    </string-array>
-    <string-array name="MCU_HeartBeat_LEDs_array_value">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-		<item>5</item>
-		<item>6</item>
-		<item>7</item>
-    </string-array>
-
     <string name="FAN_default">Automatic speed control(temperature dependent)</string>
     <string-array name="FAN_array">
         <item>Off</item>
@@ -260,16 +211,15 @@
         <item>5</item>
     </string-array>
 
-    <string name="MCU_RED_LED_ON_Brightness_title">Red LED Brightness level</string>
-	<string name="MCU_RED_LED_OFF_Brightness_title">Red LED Brightness level</string>
-	<string name="MCU_GREEN_LED_ON_Brightness_title">Green LED Brightness level</string>
-	<string name="MCU_GRREN_LED_OFF_Brightness_title">Green LED Brightness level</string>
-	<string name="MCU_BLUE_LED_ON_Brightness_title">Blue LED Brightness level</string>
-	<string name="MCU_BLUE_LED_OFF_Brightness_title">Blue LED Brightness level</string>
+    <string name="MCU_RED_LED_ON_Brightness_title" translatable="false">Red LED Brightness</string>
+    <string name="MCU_RED_LED_OFF_Brightness_title" translatable="false">Red LED Brightness</string>
+    <string name="MCU_GREEN_LED_ON_Brightness_title" translatable="false">Green LED Brightness</string>
+    <string name="MCU_GRREN_LED_OFF_Brightness_title" translatable="false">Green LED Brightness</string>
+    <string name="MCU_BLUE_LED_ON_Brightness_title" translatable="false">Blue LED Brightness</string>
+    <string name="MCU_BLUE_LED_OFF_Brightness_title" translatable="false">Blue LED Brightness</string>
 
     <string name="mipi_Brightness_title">MIPI Brightness level</string>
     <string name="vbo_Brightness_title">VBO Brightness level</string>
-
     <string name="logoled_Brightness_title">Logo LED Brightness level</string>
     <string name="textview" translatable="false">TextView</string>
 
