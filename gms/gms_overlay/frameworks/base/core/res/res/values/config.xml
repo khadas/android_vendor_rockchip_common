@@ -7,4 +7,7 @@
         <!-- <item>com.android.settings</item> -->
         <item>com.google.android.apps.wellbeing</item>
     </string-array>
+
+    <!-- Default component for QR code scanner -->
+    <string name="config_defaultQrCodeComponent">com.google.android.gms/.mlkit.barcode.ui.PlatformBarcodeScanningActivityProxy</string>
 </resources>
