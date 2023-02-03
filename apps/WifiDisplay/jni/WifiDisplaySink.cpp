@@ -50,7 +50,7 @@
 #include <inttypes.h>
 #if (PLATFORM_VERSION == 11)
 #include <ui/DisplayConfig.h>
-#elif (PLATFORM_VERSION == 12)
+#elif (PLATFORM_VERSION >= 12)
 #include <ui/DisplayMode.h>
 #else 
 #include <ui/DisplayInfo.h>
@@ -975,7 +975,7 @@ void WifiDisplaySink::onGetParameterRequest(
     const ssize_t displayWidth = resolution.getWidth();
     const ssize_t displayHeight = resolution.getHeight();
     float fps = config.refreshRate;
-#elif (PLATFORM_VERSION == 12)
+#elif (PLATFORM_VERSION >= 12)
     CHECK(display != nullptr);
     ui::DisplayMode mode;
     CHECK_EQ(SurfaceComposerClient::getActiveDisplayMode(display, &mode), NO_ERROR);

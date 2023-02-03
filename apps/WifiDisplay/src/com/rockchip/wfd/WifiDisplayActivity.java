@@ -308,7 +308,8 @@ public class WifiDisplayActivity extends Activity implements PeerListListener, P
     	mNetworkDetecting.detectWifiEnable();
         registerReceiver(mReceiver, mIntentFilter);
         //若直接设置为true，在弹出连接对话框时，会进行research
-        mMainHandler.postDelayed(mSetShowingUIAction, 1000);
+        //mMainHandler.postDelayed(mSetShowingUIAction, 1000);
+        isShowingUI = true;
     }
     
     private Runnable mSetShowingUIAction = new Runnable(){
@@ -443,7 +444,7 @@ stopService(intent);
     }
 
     private void handleP2pStateChanged() {
-        updateSearchMenu(false, false);
+        updateSearchMenu(false, true);
         if (mWifiP2pEnabled) {
             /* Request latest set of peers */
             mWifiP2pManager.requestPeers(mChannel, WifiDisplayActivity.this);

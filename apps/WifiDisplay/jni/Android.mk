@@ -26,8 +26,15 @@ LOCAL_C_INCLUDES:= \
         $(TOP)/frameworks/av/media/libstagefright \
         $(TOP)/frameworks/native/include/media/openmax \
         $(TOP)/frameworks/native/include/media/hardware \
-        $(TOP)/frameworks/av/media/libstagefright/mpeg2ts \
         $(TOP)/frameworks/base/core/jni/include  \
+
+ifeq (1, $(strip $(shell expr $(PLATFORM_VERSION) \<= 12)))
+LOCAL_C_INCLUDES += \
+	$(TOP)/frameworks/av/media/libstagefright/mpeg2ts
+else
+LOCAL_C_INCLUDES += \
+	$(TOP)/frameworks/av/media/libstagefright/mpeg2ts/include/mpeg2ts
+endif
 
 LOCAL_SHARED_LIBRARIES:= \
         libbinder                       \

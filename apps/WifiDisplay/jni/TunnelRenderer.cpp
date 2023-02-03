@@ -41,7 +41,7 @@
 #include <inttypes.h>
 #if (PlATFORM_VERSION == 11)
 #include <ui/DisplayConfig.h>
-#elif (PLATFORM_VERSION == 12)
+#elif (PLATFORM_VERSION >= 12)
 #include <ui/DisplayMode.h>
 #else
 #include <ui/DisplayInfo.h>
@@ -989,7 +989,7 @@ void TunnelRenderer::initPlayer() {
             ISurfaceComposer::eDisplayIdMain));
 #endif
 
-#if (PLATFORM_VERSION == 12)
+#if (PLATFORM_VERSION >= 12)
     CHECK(display != nullptr);
     ui::DisplayMode mode;
     CHECK_EQ(SurfaceComposerClient::getActiveDisplayMode(display, &mode), NO_ERROR);
@@ -1033,8 +1033,8 @@ void TunnelRenderer::initPlayer() {
 		
 		if(pro_value_pro[0] - '0' < 4 && pro_value_pro[0] - '0' >=0)
 			rotation = pro_value_pro[0] - '0';
-		ALOGE("initPlayer####displayHeight=%d,displayWidth=%d rot_w %d rot_h %d x %d y %d screen_dir %d, rotation %d %c %c",
-			displayHeight,displayWidth,rotate_displayWidth,rotate_displayHeight,rotate_xpos,rotate_ypos,screen_dir,rotation,
+	     ALOGE("initPlayer####displayHeight=%zd,displayWidth=%zd rot_w %d rot_h %d x %d y %d screen_dir %d, rotation %d %c %c",
+		displayHeight,displayWidth,rotate_displayWidth,rotate_displayHeight,rotate_xpos,rotate_ypos,screen_dir,rotation,
 			pro_value[0],pro_value_pro[0]);
 #if 0
 

@@ -50,8 +50,6 @@ struct RTPSink : public AHandler {
 	TunnelRenderer* getRender(){return mRenderer.get();};	
 
 	void Processdata(sp<ABuffer> &data,int sessionId);
-	void* ALooper_func();
-	static void* ThreadLoop(void* me);
 	void clear_mNetSession();  // for resolve the sp problem modify by lance 2013.06.01
 	int32_t get_mRTPSessionID() const;  // add by lance for get mRTPSessionID 2013.06.01
 	int32_t get_mRTCPSessionID() const;  // add by lance for get mRTCPSessionID 2013.06.01
@@ -86,7 +84,6 @@ private:
 
     sp<TunnelRenderer> mRenderer;
 	sp<ALooper> renderLooper;
-	pthread_t mThread;
     status_t parseRTP(const sp<ABuffer> &buffer);
     status_t parseRTCP(const sp<ABuffer> &buffer);
     status_t parseBYE(const uint8_t *data, size_t size);

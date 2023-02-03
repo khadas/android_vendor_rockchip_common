@@ -358,19 +358,9 @@ RTPSink::RTPSink(
             false /* canCallJava */,
             PRIORITY_AUDIO);
 }
-void* RTPSink::ALooper_func()
-{
-	renderLooper->start(true);
-	return NULL;
-}
-void* RTPSink::ThreadLoop(void *me )
-{
-	return (void *) static_cast<RTPSink *>(me)->ALooper_func();
-}
+
 RTPSink::~RTPSink() {
-	void* retval1;
 	renderLooper->stop();
-   	pthread_join(mThread, &retval1);
 	ALOGD("RTPSink::~RTPSink");
     /*if (mRTCPSessionID != 0) {
 		ALOGD("RTPSink::~RTPSink mRTCPSessionID %d",mRTCPSessionID);
