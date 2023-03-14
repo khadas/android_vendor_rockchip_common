@@ -20,7 +20,7 @@
     </Settings>
     <Decoders>
         <MediaCodec name="c2.rk.avc.decoder" type="video/avc">
-            <Limit name="size" min="96x96" max="1920x1088" />
+            <Limit name="size" min="176x144" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="block-count" range="1-8160" /> <!-- max 1920x1088 -->
@@ -31,7 +31,7 @@
             <Limit name="performance-point-1920x1088" value="30" />
         </MediaCodec>
         <MediaCodec name="c2.rk.hevc.decoder" type="video/hevc">
-            <Limit name="size" min="2x2" max="1280x720"/>
+            <Limit name="size" min="176x144" max="1280x720"/>
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="block-count" range="1-3600" /> <!-- max 1280x720 -->
@@ -60,7 +60,7 @@
             <Limit name="blocks-per-second" range="1-244800" />
             <Limit name="bitrate" range="1-384000" />
             <Feature name="adaptive-playback" />
-            <Limit name="concurrent-instances" max="6" />
+            <Limit name="concurrent-instances" max="16" />
             <Limit name="performance-point-352x288" value="30" />
         </MediaCodec>
         <MediaCodec name="c2.rk.m4v.decoder" type="video/mp4v-es">
@@ -71,7 +71,7 @@
             <Limit name="blocks-per-second" range="1-396" />
             <Limit name="bitrate" range="1-384000" />
             <Feature name="adaptive-playback"/>
-            <Limit name="concurrent-instances" max="6" />
+            <Limit name="concurrent-instances" max="16" />
             <Limit name="performance-point-352x288" value="30" />
         </MediaCodec>
     </Decoders>

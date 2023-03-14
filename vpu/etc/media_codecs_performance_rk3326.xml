@@ -95,16 +95,16 @@
             <Limit name="measured-frame-rate-1920x1080" range="77-77" />
         </MediaCodec>
         <MediaCodec name="c2.rk.h263.decoder" type="video/3gpp" update="true">
-            <Limit name="measured-frame-rate-176x144" range="775-775" />
+            <Limit name="measured-frame-rate-176x144" range="297-310" />
             <Limit name="measured-frame-rate-352x288" range="650-780" />
         </MediaCodec>
         <MediaCodec name="c2.rk.m4v.decoder" type="video/mp4v-es" update="true">
             <Limit name="measured-frame-rate-176x144" range="590-600" />
         </MediaCodec>
         <MediaCodec name="c2.rk.hevc.decoder" type="video/hevc" update="true">
-            <Limit name="measured-frame-rate-352x288" range="690-700" />
-            <Limit name="measured-frame-rate-640x360" range="372-376" />
-            <Limit name="measured-frame-rate-720x480" range="500-543" />
+            <Limit name="measured-frame-rate-352x288" range="77-135" />
+            <Limit name="measured-frame-rate-640x360" range="122-130" />
+            <Limit name="measured-frame-rate-720x480" range="60-106" />
             <Limit name="measured-frame-rate-1280x720" range="220-238" />
             <Limit name="measured-frame-rate-1920x1080" range="130-140" />
             <Limit name="measured-frame-rate-3840x2160" range="30-40" />
