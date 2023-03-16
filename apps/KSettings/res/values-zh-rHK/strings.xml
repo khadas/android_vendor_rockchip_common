@@ -3,7 +3,7 @@
     <string name="HDMI_IN">HDMI輸入</string>
     <string name="Ethernet">有線網路</string>
     <string name="Hotspot">熱點源</string>
-    <string name="DisplaySound_Setting">顯示和聲音</string>
+    <string name="Display_Setting">顯示</string>
     <string name="PowerKey">電源按鍵定義</string>
     <string name="FunctionKey">功能按鍵定義</string>
     <string name="LEDs">LED燈控制</string>
@@ -40,7 +40,7 @@
 
     <string name="Force_land_for_app">強制橫屏</string>
 
-    <string name="Screen_density_default">280</string>
+    <string name="Screen_density_default">240</string>
     <string-array name="Screen_density_array">
         <item>120</item>
         <item>160</item>
@@ -48,6 +48,7 @@
         <item>240</item>
         <item>280</item>
         <item>320</item>
+        <item>480</item>
     </string-array>
     <string-array name="Screen_density_array_value">
         <item>1</item>
@@ -56,6 +57,7 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+        <item>7</item>
     </string-array>
 
     <string name="Screen_rotation_default">0</string>
@@ -102,8 +104,10 @@
         <item>等級 1</item>
         <item>等級 2</item>
         <item>等級 3</item>
+        <item>等級 4</item>
     </string-array>
     <string-array name="FAN_array_value">
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
