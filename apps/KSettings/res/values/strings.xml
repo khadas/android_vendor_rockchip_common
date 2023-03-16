@@ -3,7 +3,7 @@
     <string name="HDMI_IN">HDMI IN</string>
     <string name="Ethernet">Ethernet</string>
     <string name="Hotspot">Hotspot Source</string>
-    <string name="DisplaySound_Setting">Display &amp; Sound</string>
+    <string name="Display_Setting">Display</string>
     <string name="PowerKey">PowerKey definition</string>
     <string name="FunctionKey">FunctionKey definition</string>
     <string name="LEDs">LEDs control</string>
@@ -47,7 +47,7 @@
 
     <string name="Force_land_for_app">Force land for application</string>
 
-    <string name="Screen_density_default">480</string>
+    <string name="Screen_density_default">240</string>
     <string-array name="Screen_density_array">
         <item>120</item>
         <item>160</item>

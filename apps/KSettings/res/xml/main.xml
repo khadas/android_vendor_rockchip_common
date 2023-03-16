@@ -3,6 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceScreen
+        android:title="@string/Display_Setting"
+        android:iconSpaceReserved="false">
+        <intent
+            android:targetClass="com.khadas.ksettings.Display_Preference"
+            android:targetPackage="com.khadas.ksettings" />
+    </PreferenceScreen>
+    <PreferenceScreen
         android:title="@string/LEDs"
         android:iconSpaceReserved="false">
         <intent

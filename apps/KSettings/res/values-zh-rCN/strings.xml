@@ -3,7 +3,7 @@
     <string name="HDMI_IN">HDMI输入</string>
     <string name="Ethernet">有线网络</string>
     <string name="Hotspot">热点源</string>
-    <string name="DisplaySound_Setting">显示和声音</string>
+    <string name="Display_Setting">显示</string>
     <string name="PowerKey">电源按键定义</string>
     <string name="FunctionKey">功能按键定义</string>
     <string name="LEDs">LED灯控制</string>
@@ -41,7 +41,7 @@
 
     <string name="Force_land_for_app">强制横屏</string>
 
-    <string name="Screen_density_default">280</string>
+    <string name="Screen_density_default">240</string>
     <string-array name="Screen_density_array">
         <item>120</item>
         <item>160</item>
@@ -49,6 +49,7 @@
         <item>240</item>
         <item>280</item>
         <item>320</item>
+        <item>480</item>
     </string-array>
     <string-array name="Screen_density_array_value">
         <item>1</item>
@@ -57,6 +58,7 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+        <item>7</item>
     </string-array>
 
     <string name="Screen_rotation_default">0</string>
@@ -103,8 +105,10 @@
         <item>等级 1</item>
         <item>等级 2</item>
         <item>等级 3</item>
+        <item>等级 4</item>
     </string-array>
     <string-array name="FAN_array_value">
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

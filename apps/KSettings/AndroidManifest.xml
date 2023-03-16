@@ -38,6 +38,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Display_Preference"
+            android:label="@string/Display_Setting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SYS_LEDs_Preference"
 	    android:label="@string/SYS_LEDs">
 	    <intent-filter>
@@ -65,11 +72,12 @@
 		    <action android:name="android.intent.action.MAIN" />
 	    </intent-filter>
     </activity>
-    <receiver android:name=".LedsReceiver">
+    <receiver android:name=".BootReceiver">
         <intent-filter android:priority="2147483647">
             <action android:name="android.intent.action.BOOT_COMPLETED"/>
         </intent-filter>
     </receiver>
+
     </application>
 
 </manifest>
