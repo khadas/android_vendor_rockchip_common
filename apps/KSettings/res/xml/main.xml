@@ -29,6 +29,14 @@
     </ListPreference>
 
     <PreferenceScreen
+        android:title="@string/Status_bar_control"
+        android:iconSpaceReserved="false">
+        <intent
+            android:targetClass="com.khadas.ksettings.Status_bar_Preference"
+            android:targetPackage="com.khadas.ksettings" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
         android:title="@string/Timer"
         android:iconSpaceReserved="false">
         <intent
