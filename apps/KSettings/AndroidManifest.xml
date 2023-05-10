@@ -31,6 +31,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Status_bar_Preference"
+            android:label="@string/Status_bar_control">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".LEDs_Preference"
             android:label="@string/LEDs">
             <intent-filter>
