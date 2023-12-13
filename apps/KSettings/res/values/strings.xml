@@ -201,6 +201,7 @@
         <item>Level 2</item>
         <item>Level 3</item>
         <item>Level 4</item>
+		<item>Level 5</item>
     </string-array>
     <string-array name="FAN_array_value">
         <item>0</item>
@@ -209,6 +210,7 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+		<item>6</item>
     </string-array>
 
     <string name="MCU_RED_LED_ON_Brightness_title" translatable="false">Red LED Brightness</string>

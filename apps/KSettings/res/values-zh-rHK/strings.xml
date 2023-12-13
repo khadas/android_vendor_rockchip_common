@@ -105,6 +105,7 @@
         <item>等級 2</item>
         <item>等級 3</item>
         <item>等級 4</item>
+		<item>等級 5</item>
     </string-array>
     <string-array name="FAN_array_value">
         <item>0</item>
@@ -113,6 +114,7 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+		<item>6</item>
     </string-array>
 
     <string name="mipi_Brightness_title">MIPI 背光調節</string>

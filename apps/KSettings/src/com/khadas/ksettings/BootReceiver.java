@@ -82,6 +82,15 @@ public class BootReceiver extends BroadcastReceiver {
 					e.printStackTrace();
 				}
 				break;
+			case 6:
+				try {
+					ComApi.execCommand(new String[]{"sh", "-c", "echo 1 > /sys/class/fan/enable"});
+					ComApi.execCommand(new String[]{"sh", "-c", "echo 0 > /sys/class/fan/mode"});
+					ComApi.execCommand(new String[]{"sh", "-c", "echo 5 > /sys/class/fan/level"});
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
 		}
 	}
 
