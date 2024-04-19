@@ -9,6 +9,12 @@
     <string name="LEDs">LED灯控制</string>
     <string name="Cooling_fan">风扇控制</string>
     <string name="WOL">WOL</string>
+	<string name="CAM1_IR_CUT">Camera1 ir-cut</string>
+	<string name="CAM2_IR_CUT">Camera2 ir-cut</string>
+	<string name="CAM3_IR_CUT">Camera3 ir-cut</string>
+	<string name="CAM4_IR_CUT">Camera4 ir-cut</string>
+    <string name="CAM_IR_CUT_ON_summary">打开os08a10摄像头ir-cut功能</string>
+	<string name="CAM_IR_CUT_OFF_summary">关闭os08a10摄像头ir-cut功能</string>
     <string name="Status_bar_control">状态栏控制</string>
     <string name="Logo_LED_control">Logo LED灯控制</string>
     <string name="Timer">定时器</string>

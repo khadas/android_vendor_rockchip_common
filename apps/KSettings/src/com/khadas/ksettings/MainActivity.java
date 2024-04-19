@@ -3,6 +3,7 @@ package com.khadas.ksettings;
 import android.content.Context;
 import android.os.SystemProperties;
 import android.preference.ListPreference;
+import android.preference.PreferenceScreen;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.os.Bundle;
@@ -10,28 +11,78 @@ import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.util.Log;
 import android.widget.Toast;
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends PreferenceActivity implements Preference.OnPreferenceClickListener {
 
     private ListPreference FAN_Preference;
     private SwitchPreference WOL_Preference;
+	private SwitchPreference CAM1_IR_CUT_Preference;
+	private SwitchPreference CAM2_IR_CUT_Preference;
+	private SwitchPreference CAM3_IR_CUT_Preference;
 
     private Context mContext;
 
     private static final String FAN_KEY = "FAN_KEY";
+	private static final String CAM1_IR_CUT_KEY = "CAM1_IR_CUT_KEY";
+	private static final String CAM2_IR_CUT_KEY = "CAM2_IR_CUT_KEY";
+	private static final String CAM3_IR_CUT_KEY = "CAM3_IR_CUT_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.main);
         mContext = this;
+		PreferenceScreen preferenceScreen = getPreferenceScreen();
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         FAN_Preference = (ListPreference) findPreference(FAN_KEY);
         bindPreferenceSummaryToValue(FAN_Preference);
+		CAM1_IR_CUT_Preference = (SwitchPreference)findPreference(CAM1_IR_CUT_KEY);
+		CAM1_IR_CUT_Preference.setOnPreferenceClickListener(this);
+		CAM2_IR_CUT_Preference = (SwitchPreference)findPreference(CAM2_IR_CUT_KEY);
+		CAM2_IR_CUT_Preference.setOnPreferenceClickListener(this);
+		CAM3_IR_CUT_Preference = (SwitchPreference)findPreference(CAM3_IR_CUT_KEY);
+		CAM3_IR_CUT_Preference.setOnPreferenceClickListener(this);
+
+		CAM1_IR_CUT_Preference = (SwitchPreference)findPreference(CAM1_IR_CUT_KEY);
+		CAM1_IR_CUT_Preference.setOnPreferenceClickListener(this);
+		CAM2_IR_CUT_Preference = (SwitchPreference)findPreference(CAM2_IR_CUT_KEY);
+		CAM2_IR_CUT_Preference.setOnPreferenceClickListener(this);
+		CAM3_IR_CUT_Preference = (SwitchPreference)findPreference(CAM3_IR_CUT_KEY);
+		CAM3_IR_CUT_Preference.setOnPreferenceClickListener(this);
+
+        File file = new File("/sys/bus/i2c/drivers/os08a10/3-0036");
+        if (!file.exists()){
+			//CAM1_IR_CUT_Preference.setEnabled(false);
+			preferenceScreen.removePreference(CAM1_IR_CUT_Preference);
+		}
+
+		file = new File("/sys/bus/i2c/drivers/os08a10/4-0036");
+        if (!file.exists()){
+			//CAM2_IR_CUT_Preference.setEnabled(false);
+			preferenceScreen.removePreference(CAM2_IR_CUT_Preference);
+		}
+
+		file = new File("/sys/bus/i2c/drivers/os08a10/8-0036");
+        if (!file.exists()){
+			//CAM3_IR_CUT_Preference.setEnabled(false);
+			preferenceScreen.removePreference(CAM3_IR_CUT_Preference);
+		}
     }
 
     /**
@@ -147,6 +198,80 @@ public class MainActivity extends PreferenceActivity implements Preference.OnPre
     @Override
     public boolean onPreferenceClick(Preference preference) {
         final String key = preference.getKey();
+
+		if (CAM1_IR_CUT_KEY.equals(key)){
+            if (CAM1_IR_CUT_Preference.isChecked()) {
+                su_exec("echo 118 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio118/direction;echo 0 > sys/class/gpio/gpio118/value");
+				SystemProperties.set("persist.sys.cam1", "" + 1);
+            }else {
+                su_exec("echo 118 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio118/direction;echo 1 > sys/class/gpio/gpio118/value");
+				SystemProperties.set("persist.sys.cam1", "" + 0);
+			}
+        }else if (CAM2_IR_CUT_KEY.equals(key)){
+            if (CAM2_IR_CUT_Preference.isChecked()) {
+                su_exec("echo 42 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio42/direction;echo 0 > sys/class/gpio/gpio42/value");
+				SystemProperties.set("persist.sys.cam2", "" + 1);
+            }else {
+                su_exec("echo 42 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio42/direction;echo 1 > sys/class/gpio/gpio42/value");
+				SystemProperties.set("persist.sys.cam2", "" + 0);
+			}
+        }else if (CAM3_IR_CUT_KEY.equals(key)){
+            if (CAM3_IR_CUT_Preference.isChecked()) {
+                su_exec("echo 108 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio108/direction;echo 0 > sys/class/gpio/gpio108/value");
+				SystemProperties.set("persist.sys.cam3", "" + 1);
+            }else {
+                su_exec("echo 108 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio108/direction;echo 1 > sys/class/gpio/gpio108/value");
+				SystemProperties.set("persist.sys.cam3", "" + 0);
+			}
+		}
         return true;
     }
+
+	public static String su_exec(String command) {
+
+	    Process process = null;
+	    BufferedReader reader = null;
+	    InputStreamReader is = null;
+	    DataOutputStream os = null;
+
+	    try {
+	        process = Runtime.getRuntime().exec("su");
+	        is = new InputStreamReader(process.getInputStream());
+	        reader = new BufferedReader(is);
+	        os = new DataOutputStream(process.getOutputStream());
+	        os.writeBytes(command + "\n");
+	        os.writeBytes("exit\n");
+	        os.flush();
+	        int read;
+	        char[] buffer = new char[4096];
+	        StringBuilder output = new StringBuilder();
+	        while ((read = reader.read(buffer)) > 0) {
+	            output.append(buffer, 0, read);
+	        }
+	        process.waitFor();
+	        return output.toString();
+	    } catch (IOException | InterruptedException e) {
+	        throw new RuntimeException(e);
+	    } finally {
+	        try {
+	            if (os != null) {
+	                os.close();
+	            }
+
+	            if (reader != null) {
+	                reader.close();
+	            }
+
+	            if (is != null) {
+	                is.close();
+	            }
+
+	            if (process != null) {
+	                process.destroy();
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
 }
