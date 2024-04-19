@@ -13,6 +13,12 @@
     <string name="MCU_System_OFF_Status" translatable="false">MCU LEDs System Shutdown control</string>
     <string name="Cooling_fan">Cooling fan</string>
     <string name="WOL">WOL</string>
+	<string name="CAM1_IR_CUT">Camera1 ir-cut</string>
+	<string name="CAM2_IR_CUT">Camera2 ir-cut</string>
+	<string name="CAM3_IR_CUT">Camera3 ir-cut</string>
+	<string name="CAM4_IR_CUT">Camera4 ir-cut</string>
+    <string name="CAM_IR_CUT_ON_summary">Turn on os08a10 mipi camera ir-cut</string>
+	<string name="CAM_IR_CUT_OFF_summary">Turn off os08a10 mipi camera ir-cut</string>
     <string name="Status_bar_control">Status bar control</string>
     <string name="Logo_LED_control">Logo LED control</string>
     <string name="Timer">Timer</string>

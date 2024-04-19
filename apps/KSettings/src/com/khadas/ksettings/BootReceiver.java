@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.util.Log;
+import java.io.File;
 
 import java.io.IOException;
 
@@ -26,8 +27,38 @@ public class BootReceiver extends BroadcastReceiver {
 			Settings.System.putInt(context.getContentResolver(),"user_rotation", SystemProperties.getInt("persist.sys.user_rotation",0));
 			fan_control();
 			led_control();
+			cam_ir_cut_control();
 		}
 	}
+
+	private void cam_ir_cut_control() {
+        File file = new File("/sys/bus/i2c/drivers/os08a10/3-0036");
+        if (file.exists()){
+			if(1 == SystemProperties.getInt("persist.sys.cam1", 0)){
+				MainActivity.su_exec("echo 118 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio118/direction;echo 0 > sys/class/gpio/gpio118/value");
+			}else{
+				MainActivity.su_exec("echo 118 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio118/direction;echo 1 > sys/class/gpio/gpio118/value");
+			}
+		}
+
+		file = new File("/sys/bus/i2c/drivers/os08a10/4-0036");
+        if (file.exists()){
+			if(1 == SystemProperties.getInt("persist.sys.cam2", 0)){
+				MainActivity.su_exec("echo 42 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio42/direction;echo 0 > sys/class/gpio/gpio42/value");
+			}else{
+				MainActivity.su_exec("echo 42 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio42/direction;echo 1 > sys/class/gpio/gpio42/value");
+			}
+		}
+
+		file = new File("/sys/bus/i2c/drivers/os08a10/8-0036");
+        if (file.exists()){
+			if(1 == SystemProperties.getInt("persist.sys.cam3", 0)){
+				MainActivity.su_exec("echo 108 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio108/direction;echo 0 > sys/class/gpio/gpio108/value");
+			}else{
+				MainActivity.su_exec("echo 108 > /sys/class/gpio/export;echo out > sys/class/gpio/gpio108/direction;echo 1 > sys/class/gpio/gpio108/value");
+			}
+ 		}
+ 	}
 
 	private void fan_control() {
 		switch (SystemProperties.getInt("persist.sys.fan_control", 1)){
