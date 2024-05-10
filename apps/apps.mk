@@ -1,6 +1,7 @@
 
 
 PRODUCT_PACKAGES += \
+    OTAService \
     RKUpdateService
 
 ifeq ($(strip $(TARGET_BOARD_HARDWARE)), rk30board)
