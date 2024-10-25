@@ -6,7 +6,8 @@ PRODUCT_PACKAGES += \
         libgpudataproducer
 
 PRODUCT_COPY_FILES += \
-	vendor/rockchip/common/gpu/MaliG610/firmware/mali_csffw.bin:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/mali_csffw.bin
+	vendor/rockchip/common/gpu/MaliG610/firmware/mali_csffw.bin:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/mali_csffw.bin \
+	vendor/rockchip/common/gpu/MaliG610/firmware/g22p0-01eac0.mali_csffw.bin:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/g22p0-01eac0.mali_csffw.bin
 
 ifneq ($(DEVICE_IS_64BIT_ONLY), true)
 PRODUCT_PACKAGES += \
