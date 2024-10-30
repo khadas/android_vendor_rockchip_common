@@ -21,7 +21,6 @@
         android:key="FAN_KEY"
         android:iconSpaceReserved="false"
         android:title="@string/Cooling_fan"
-        android:summary="@string/FAN_default"
         android:defaultValue="1"
         android:dialogTitle="@string/Cooling_fan"
         android:entries="@array/FAN_array"
