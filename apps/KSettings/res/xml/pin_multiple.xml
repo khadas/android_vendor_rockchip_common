@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="PIN_MULTIPLE_KEY"
+        android:iconSpaceReserved="false"
+        android:title="@string/pin_multiple_spi"
+        android:summary="@string/PIN_default"
+        android:defaultValue="0"
+        android:dialogTitle="@string/pin_multiple_spi"
+        android:entries="@array/PIN_array"
+        android:entryValues="@array/PIN_array_value">
+    </ListPreference>
+
+</PreferenceScreen>

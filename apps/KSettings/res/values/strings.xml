@@ -24,6 +24,8 @@
     <string name="camera_faceback">Camera faceback</string>
     <string name="camera_orientation">Camera orientation</string>
     <string name="reboot_take_effect">You need to restart the device to activate the settings.</string>
+    <string name="pin_multiple">Pin multiple</string>
+    <string name="pin_multiple_spi">SPI pin multiple</string>
     <string name="Logo_LED_control">Logo LED control</string>
     <string name="Timer">Timer</string>
     <string name="USB_PCIE">Toggle USB-3.0/PCI-E</string>
@@ -244,6 +246,15 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+    </string-array>
+    <string name="PIN_default">Off</string>
+    <string-array name="PIN_array">
+        <item>Off</item>
+        <item>On</item>
+    </string-array>
+    <string-array name="PIN_array_value">
+        <item>0</item>
+        <item>1</item>
     </string-array>
 
     <string name="MCU_RED_LED_ON_Brightness_title" translatable="false">Red LED Brightness</string>

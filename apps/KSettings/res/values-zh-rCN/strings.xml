@@ -20,6 +20,8 @@
     <string name="camera_faceback">摄像头朝向</string>
     <string name="camera_orientation">摄像头角度</string>
     <string name="reboot_take_effect">你需要重启设备激活设置.</string>
+    <string name="pin_multiple">IO复用</string>
+    <string name="pin_multiple_spi">SPI复用IO</string>
     <string name="Logo_LED_control">Logo LED灯控制</string>
     <string name="Timer">定时器</string>
     <string name="USB_PCIE">Toggle USB-3.0/PCI-E</string>
@@ -126,6 +128,15 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+    </string-array>
+    <string name="PIN_default">关闭</string>
+    <string-array name="PIN_array">
+        <item>关闭</item>
+        <item>打开</item>
+    </string-array>
+    <string-array name="PIN_array_value">
+        <item>0</item>
+        <item>1</item>
     </string-array>
 
 
