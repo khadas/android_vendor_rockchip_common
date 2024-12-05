@@ -45,6 +45,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".PinMultiple"
+            android:exported="true"
+            android:label="@string/pin_multiple">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".LEDs_Preference"
             android:label="@string/LEDs">
             <intent-filter>

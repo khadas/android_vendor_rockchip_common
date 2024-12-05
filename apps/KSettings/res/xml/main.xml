@@ -63,6 +63,15 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        android:title="@string/pin_multiple"
+        android:summary="@string/reboot_take_effect"
+        android:iconSpaceReserved="false">
+        <intent
+            android:targetClass="com.khadas.ksettings.PinMultiple"
+            android:targetPackage="com.khadas.ksettings" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
         android:title="@string/Timer"
         android:iconSpaceReserved="false">
         <intent

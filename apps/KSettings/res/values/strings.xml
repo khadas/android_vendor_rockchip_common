@@ -24,6 +24,8 @@
     <string name="camera_faceback">Camera faceback</string>
     <string name="camera_orientation">Camera orientation</string>
     <string name="reboot_take_effect">You need to restart the device to activate the settings.</string>
+    <string name="pin_multiple">Pin multiple</string>
+    <string name="pin_multiple_spi">SPI pin multiple</string>
     <string name="Logo_LED_control">Logo LED control</string>
     <string name="Timer">Timer</string>
     <string name="keep_alive_app_setting">Keep alive app setting</string>
@@ -113,6 +115,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+    <string name="Camera_faceback_default">Facing external</string>
     <string-array name="camera_faceback_array">
         <item>Facing back</item>
         <item>Facing front</item>
@@ -123,7 +126,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-
+    <string name="Camera_orientation_default">0</string>
     <string-array name="camera_orientation_array">
         <item>0</item>
         <item>90</item>
@@ -135,6 +138,15 @@
         <item>90</item>
         <item>180</item>
         <item>270</item>
+    </string-array>
+    <string name="PIN_default">Off</string>
+    <string-array name="PIN_array">
+        <item>Off</item>
+        <item>On</item>
+    </string-array>
+    <string-array name="PIN_array_value">
+        <item>0</item>
+        <item>1</item>
     </string-array>
     <string name="LED_red" translatable="false">Sys Red LED</string>
     <string name="LED_green" translatable="false">Sys Green LED</string>

@@ -60,6 +60,13 @@ public class CameraPreference extends PreferenceActivity implements Preference.O
             String stringValue = value.toString();
             String key = preference.getKey();
             Log.e(TAG, "stringValue " + stringValue + " key " + key);
+            if (preference instanceof ListPreference) {
+                // For list preferences, look up the correct display value in
+                // the preference's 'entries' list.
+                ListPreference listPreference = (ListPreference) preference;
+                int index = listPreference.findIndexOfValue(stringValue);
+                // Set the summary to reflect the new value.
+                preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
             if (CAMERA_FACEBACK_KEY.equals(key)) {
                 String faceback = SystemProperties.get("persist.sys.camera_usb_faceback", "2");
                 if(!stringValue.equals(faceback)) {
@@ -72,6 +79,11 @@ public class CameraPreference extends PreferenceActivity implements Preference.O
                     SystemProperties.set("persist.sys.camera_usb_orientation", stringValue);
                     Toast.makeText(mContext, mContext.getString(R.string.reboot_take_effect), Toast.LENGTH_SHORT).show();
                 }
+            }
+            } else {
+                // For all other preferences, set the summary to the value's
+                // simple string representation.
+                preference.setSummary(stringValue);
             }
             return true;
         }
