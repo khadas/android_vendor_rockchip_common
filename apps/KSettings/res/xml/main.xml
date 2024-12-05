@@ -21,7 +21,6 @@
         android:key="FAN_KEY"
         android:iconSpaceReserved="false"
         android:title="@string/Cooling_fan"
-        android:summary="@string/FAN_default"
         android:defaultValue="1"
         android:dialogTitle="@string/Cooling_fan"
         android:entries="@array/FAN_array"
@@ -78,6 +77,22 @@
         <intent
             android:targetClass="com.khadas.schpwronoff.AlarmClock"
             android:targetPackage="com.khadas.schpwronoff" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:title="@string/bootup_app_setting"
+        android:iconSpaceReserved="false">
+        <intent
+            android:targetClass="com.khadas.ksettings.BootupAppsSettingActivity"
+            android:targetPackage="com.khadas.ksettings" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:title="@string/keep_alive_app_setting"
+        android:iconSpaceReserved="false">
+        <intent
+            android:targetClass="com.khadas.ksettings.KeepAliveAppsSettingActivity"
+            android:targetPackage="com.khadas.ksettings" />
     </PreferenceScreen>
 
 </PreferenceScreen>

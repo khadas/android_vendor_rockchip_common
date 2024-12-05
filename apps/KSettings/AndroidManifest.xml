@@ -53,6 +53,22 @@
             </intent-filter>
         </activity>
         <activity
+        android:name=".BootupAppsSettingActivity"
+        android:theme="@style/Theme.SettingsBase"
+        android:label="@string/bootup_app_setting">
+        <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+        </intent-filter>
+    </activity>
+    <activity
+        android:name=".KeepAliveAppsSettingActivity"
+        android:theme="@style/Theme.SettingsBase"
+        android:label="@string/keep_alive_app_setting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+        </intent-filter>
+    </activity>
+        <activity
             android:name=".LEDs_Preference"
             android:label="@string/LEDs">
             <intent-filter>

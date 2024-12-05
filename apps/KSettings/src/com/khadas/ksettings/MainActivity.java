@@ -51,7 +51,12 @@ public class MainActivity extends PreferenceActivity implements Preference.OnPre
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         FAN_Preference = (ListPreference) findPreference(FAN_KEY);
-        bindPreferenceSummaryToValue(FAN_Preference);
+        //bindPreferenceSummaryToValue(FAN_Preference);
+        FAN_Preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+        int fanCtl = SystemProperties.getInt("persist.sys.fan_control", 1);
+        String[] fanArray = getResources().getStringArray(R.array.FAN_array);
+        FAN_Preference.setValueIndex(fanCtl);
+        FAN_Preference.setSummary(fanArray[fanCtl]);
 		CAM1_IR_CUT_Preference = (SwitchPreference)findPreference(CAM1_IR_CUT_KEY);
 		CAM1_IR_CUT_Preference.setOnPreferenceClickListener(this);
 		CAM2_IR_CUT_Preference = (SwitchPreference)findPreference(CAM2_IR_CUT_KEY);
