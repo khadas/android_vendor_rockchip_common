@@ -9,6 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.DataOutputStream;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -37,13 +41,16 @@ public class Tools {
 	public static final String Gxbaby_platform_name = "gxbaby";
 	public static final String Gxl_platform_name  = "gxl";
 	public static final String Gxm_platform_name  = "gxm";
-	
+
     public static final String Key_List =(isGxbaby()?"/sys/class/unifykeys/list":"/sys/class/aml_keys/aml_keys/key_list");
     public static final String Key_Name = (isGxbaby()?"/sys/class/unifykeys/name":"/sys/class/aml_keys/aml_keys/key_name");
     public static final String Key_Read = (isGxbaby()?"/sys/class/unifykeys/read":"/sys/class/aml_keys/aml_keys/key_read");
     public static final String Key_Write = (isGxbaby()?"/sys/class/unifykeys/write":"/sys/class/aml_keys/aml_keys/key_write");
-//	public static final String Key_OTP_Mac = "/sys/class/w25q128fw/mac_addr";
-    public static final String Key_OTP_Mac = "/sys/class/wol/mac_addr";    
+    //public static final String Key_OTP_Mac = "/sys/class/w25q128fw/mac_addr";
+    public static final String Key_OTP_Mac = "/sys/class/mcu/mac_addr";
+    public static final String Key_OTP_Sn = "/sys/class/mcu/sn_addr";
+    public static final String Key_OTP_Usid = "/sys/class/mcu/usid";
+
     public static final String Key_Attach = "/sys/class/unifykeys/attach";
     public static final String Key_Attach_Value = "1";
     
@@ -63,11 +70,65 @@ public class Tools {
     //public static  final String Ethernet_Led = "/proc/ledlight/netled/state";
     public static  final String Power_Led = "/proc/ledlight/powerled/state";
 	public static  final String Ethernet_Led = "/sys/class/leds/led-sys/trigger";
-	public static  final String White_Led = "/sys/class/leds/sys_led/trigger";  //default-on off heartbeat
-	public static  final String Red_Led = "/sys/class/leds/red_led/trigger";
     public static  final String Ethernet_status = "/sys/class/net/eth0/operstate";
+	//public static  final String White_Led = "/sys/class/leds/sys_led/trigger";
+	public static  final String Red_Led = "/sys/class/leds/red_led/trigger";
+    public static  final String Green_Led = "/sys/class/leds/green_led/trigger";
+    public static  final String Blue_Led = "/sys/class/leds/blue_led/trigger";
 	public static  final String Rtc_time = "/sys/class/rtc/rtc0/time";
-	public static  final String ageing_status = "/sys/class/wol/ageing_test";  
+	public static  final String ageing_status = "/sys/class/mcu/ageing_test";
+
+    public static final String cpu_thermal = "/sys/class/thermal/thermal_zone0/temp";
+    public static final String cpu0_cpufreq = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq";
+    public static final String cpu4_cpufreq = "/sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_cur_freq";
+
+    public static String exec(String command) {
+
+        Process process = null;
+        BufferedReader reader = null;
+        InputStreamReader is = null;
+        DataOutputStream os = null;
+
+        try {
+            process = Runtime.getRuntime().exec("su");
+            is = new InputStreamReader(process.getInputStream());
+            reader = new BufferedReader(is);
+            os = new DataOutputStream(process.getOutputStream());
+            os.writeBytes(command + "\n");
+            os.writeBytes("exit\n");
+            os.flush();
+            int read;
+            char[] buffer = new char[4096];
+            StringBuilder output = new StringBuilder();
+            while ((read = reader.read(buffer)) > 0) {
+                output.append(buffer, 0, read);
+            }
+            process.waitFor();
+            return output.toString();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (os != null) {
+                    os.close();
+                }
+
+                if (reader != null) {
+                    reader.close();
+                }
+
+                if (is != null) {
+                    is.close();
+                }
+
+                if (process != null) {
+                    process.destroy();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static String execCommand(String[] command) throws IOException {
         // start the ls command running
@@ -91,35 +152,30 @@ public class Tools {
         }
         return sb;
     }
-	public static String readFile(String file)
-    {
+	public static String readFile(String file) {
         String content = "";
         File OutputFile = new File(file);
-        if(!OutputFile.exists() )
-        {
+        if (!OutputFile.exists() ) {
             return content;
         }
         
         try {
             FileInputStream instream = new FileInputStream(file);
-            if(instream != null)
-            {
+            if (instream != null) {
                 InputStreamReader inputreader = new InputStreamReader(instream);
                 BufferedReader buffreader = new BufferedReader(inputreader);
                 
                 Log.d(TAG, "buffreader = " + buffreader.toString());
                 
                 String line;
-                while( (line = buffreader.readLine() )  !=  null)
-                {
+                while( (line = buffreader.readLine() )  !=  null) {
                         content = content + line;
 
                 }
                 
                 instream.close();
             }
-        } catch(FileNotFoundException e) 
-        {
+        } catch(FileNotFoundException e) {
             Log.e(TAG, "The File doesn\'t not exist.");
         } catch(IOException e) {
             Log.e(TAG, " readFile error!");
@@ -130,21 +186,50 @@ public class Tools {
         
         return content;
     }
-    
-    public static void writeFile(String file, String value) 
-    {
-    	try
-    	{
-			FileWriter fw = new FileWriter(file);
-			fw.write(value);
-			fw.close();
-		} catch (IOException e) 
-		{
-			Log.e(TAG, e.toString() );
-		}
+
+    public static void writeFile(String file, String value) {
+        try {
+            FileWriter fw = new FileWriter(file);
+            fw.write(value);
+            fw.close();
+        } catch (IOException e) {
+            Log.e(TAG, e.toString() );
+        }
     }
 
-    public static int getBoardType()
+    public static String getUsid() {
+        String temp = readFile(Tools.Key_OTP_Usid);
+        Log.e("hlm", "temp=" + temp);
+        if (temp.contains("0x00: 00 00 00 00 00 00 00 00 00 00")) {
+            return "0000000000";
+        }
+        /*String srtUsid = asciiToString(decodeHEX(temp.split("\\s+")[1])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[2])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[3])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[4])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[5])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[6])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[7])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[8])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[9])) +
+                asciiToString(decodeHEX(temp.split("\\s+")[10]));*/
+
+        String srtUsid = temp.split("\\s+")[1].substring(1,2) +
+                        temp.split("\\s+")[2].substring(1,2) +
+                        temp.split("\\s+")[3].substring(1,2) +
+                        temp.split("\\s+")[4].substring(1,2) +
+                        temp.split("\\s+")[5].substring(1,2) +
+                        temp.split("\\s+")[6].substring(1,2) +
+                        temp.split("\\s+")[7].substring(1,2) +
+                        temp.split("\\s+")[8].substring(1,2) +
+                        temp.split("\\s+")[9].substring(1,2) +
+                        temp.split("\\s+")[10].substring(1,2);
+
+        Log.e(TAG, "srtUsid=" + srtUsid);
+        return srtUsid;
+    }
+
+    /*public static int getBoardType()
     {
         int type = KHADAS_UNKNOW;
 	String str = readFile("/sys/class/board/type");
@@ -157,7 +242,7 @@ public class Tools {
         else
             type = KHADAS_UNKNOW;
         return type;
-    }
+    }*/
 
     public static boolean isEthUp()
     {
@@ -207,12 +292,10 @@ public class Tools {
         return false;
     }
 
-    public static boolean isEthConnected(Context context)
-    {
+    public static boolean isEthConnected(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = connectivity.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET);
-        if(info.isConnected())
-        {
+        if (info.isConnected()) {
             return true;
         }
 

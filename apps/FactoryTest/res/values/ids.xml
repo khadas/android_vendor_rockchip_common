@@ -11,13 +11,14 @@
     <item type="id" name="left"/>
     <item type="id" name="down"/>
     <item type="id" name="right"/>
+    <item type="id" name="ok"/>
     <item type="id" name="button_y"/>
     <item type="id" name="button_x"/>
     <item type="id" name="button_b"/>
     <item type="id" name="button_a"/>
     <item type="id" name="f12"/>
-    <item type="id" name="vs"/>
-    <item type="id" name="va"/>
+    <item type="id" name="vu"/>
+    <item type="id" name="vd"/>
     <item type="id" name="button_select"/>
     <item type="id" name="menu"/>
     <item type="id" name="mute"/>

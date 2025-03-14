@@ -23,7 +23,7 @@
     <string name="Lan_Test">以太网测试</string>
     <string name="Wifi_Test">Wifi测试</string>
     <string name="Hdmi_Test">HDMI接口</string>
-    <string name="Led_Test">网络灯测试</string>
+    <string name="Led_Test">LED灯是否闪烁</string>
      <string name="Led_TestIng">请注意网络指示灯闪烁</string>
     <string name="PowerKey_Test">电源灯测试</string>
     <string name="PowerKey_TestIng">请注意电源指示灯闪烁</string>
@@ -88,10 +88,10 @@
     <string name="button_y">BUTTON_Y</string>
     <string name="button_select">选择</string>
     <string name="button_start">开始</string>
-    <string name="va">声音加</string>
-    <string name="vs">声音减</string>
+    <string name="vd">声音减</string>
+    <string name="vu">声音加</string>
     <string name="f12">按键映射</string>
-    <string name="back">返回</string>
+    <string name="back">返回键</string>
     <string name="menu">菜单</string>
     <string name="mute">静音</string>
     <string name="n0">0</string>

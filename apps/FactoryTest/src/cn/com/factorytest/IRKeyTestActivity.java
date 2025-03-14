@@ -10,139 +10,147 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import java.io.FileReader;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import android.content.Context;
+import android.content.Intent;
+import android.provider.Settings;
 
 public class IRKeyTestActivity extends Activity {
-	
-	  private static HashMap<Integer, Integer> keyAndIds = new HashMap();
-	  private RelativeLayout layout;
-	  private HashMap<Integer, Button> mapView = new HashMap();
 
-	  static
-	  {
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_DPAD_LEFT), Integer.valueOf(R.id.right));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_DPAD_DOWN), Integer.valueOf(R.id.up));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_DPAD_RIGHT), Integer.valueOf(R.id.left));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_DPAD_UP), Integer.valueOf(R.id.down));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_1), Integer.valueOf(R.id.button_a));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_2), Integer.valueOf(R.id.button_b));
-	    //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_BACK), Integer.valueOf(R.id.back));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_3), Integer.valueOf(R.id.button_x));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_4), Integer.valueOf(R.id.button_y));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_5), Integer.valueOf(R.id.va));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_6), Integer.valueOf(R.id.home));
-	    keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_7), Integer.valueOf(R.id.vs));
-	  }
+    private static HashMap<Integer, Integer> keyAndIds = new HashMap();
+    private RelativeLayout layout;
+    private HashMap<Integer, Button> mapView = new HashMap();
+    //private TextView text1;
+    //private TextView text2;
+    private Button success, fail;
+    private Context mContext;
 
-	public Button getCodeView(int paramInt)
-	  {
-	    Button localButton1 = (Button)this.mapView.get(Integer.valueOf(paramInt));
-	    if (localButton1 != null)
-	      return localButton1;
-	    String str = KeyEvent.keyCodeToString(paramInt);
-	    int i = this.layout.getChildCount();
-	    for (int j = 0; ; j++)
-	    {
-	      if (j >= i)
-	      {
-	        Log.e("keytest", "not found " + str);
-	        return null;
-	      }
-	      View localView = this.layout.getChildAt(j);
-	      if ((localView instanceof Button))
-	      {
-	        Button localButton2 = (Button)localView;
-	        if (str.contains(((Button)localView).getText()))
-	        {
-	          this.mapView.put(Integer.valueOf(paramInt), localButton2);
-	          return localButton2;
-	        }
-	      }
-	    }
-	  }
+    static {
+        keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_DPAD_UP), Integer.valueOf(R.id.up));
+        keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_DPAD_DOWN), Integer.valueOf(R.id.down));
+        keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_DPAD_LEFT), Integer.valueOf(R.id.left));
+        keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_DPAD_RIGHT), Integer.valueOf(R.id.right));
 
-	  public Button getViewByCode(int paramInt)
-	  {
-		if(!keyAndIds.containsKey(Integer.valueOf(paramInt)))
-		{
-			        return null;
-		}
-	    int i = ((Integer)keyAndIds.get(Integer.valueOf(paramInt))).intValue();
-	    return (Button)this.layout.findViewById(i);
-	  }
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_ENTER), Integer.valueOf(R.id.ok));
 
-	  public void log(String paramString)
-	  {
-	    Log.i("keytest", paramString);
-	  }
-	  
+        keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_BACK), Integer.valueOf(R.id.back));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_CURSOR), Integer.valueOf(R.id.cursor));
+        keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_MENU), Integer.valueOf(R.id.menu));
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-        String pathname = "/sys/class/w25q128fw/key";
-		try (FileReader reader = new FileReader(pathname);
-			 BufferedReader br = new BufferedReader(reader)) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				int id = Integer.parseInt(line);
-				log("  key id:" + id);
-			}		
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.keytest);
-	    this.layout = ((RelativeLayout)findViewById(R.id.layout));
-	}
+        keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_VOLUME_DOWN), Integer.valueOf(R.id.vd));
+        keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_VOLUME_UP), Integer.valueOf(R.id.vu));
 
-	  public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent)
-	  {
-	    log("down:keyCode:" + paramInt + ",event=" + paramKeyEvent);
-	    Button localButton = getViewByCode(paramInt);
-	    if (localButton != null)
-	      localButton.setBackgroundResource(R.drawable.key_down);
-	    return true;
-	  }
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_VOLUME_MUTE), Integer.valueOf(R.id.mute));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_0), Integer.valueOf(R.id.n0));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_1), Integer.valueOf(R.id.n1));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_2), Integer.valueOf(R.id.n2));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_3), Integer.valueOf(R.id.n3));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_4), Integer.valueOf(R.id.n4));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_5), Integer.valueOf(R.id.n5));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_6), Integer.valueOf(R.id.n6));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_7), Integer.valueOf(R.id.n7));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_8), Integer.valueOf(R.id.n8));
+        //keyAndIds.put(Integer.valueOf(KeyEvent.KEYCODE_9), Integer.valueOf(R.id.n9));
+    }
 
-	  public boolean onKeyUp(int paramInt, KeyEvent paramKeyEvent)
-	  {
-		if(paramInt == KeyEvent.KEYCODE_6)
-		{
-				 log(" ok is finish this keytest acivity");
-				 this.finish();
-				 return true;
-		}
-	    log("  up:keyCode:" + paramInt + ",event=" + paramKeyEvent);
-	    Button localButton = getViewByCode(paramInt);
-	    if (localButton != null)
-	      localButton.setBackgroundResource(R.drawable.key_up);
-	    return true;
-	  }
-	
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
+    public Button getCodeView(int paramInt) {
+        Button localButton1 = (Button) this.mapView.get(Integer.valueOf(paramInt));
+        if (localButton1 != null)
+            return localButton1;
+        String str = KeyEvent.keyCodeToString(paramInt);
+        int i = this.layout.getChildCount();
+        for (int j = 0; ; j++) {
+            if (j >= i) {
+                Log.e("keytest", "not found " + str);
+                return null;
+            }
+            View localView = this.layout.getChildAt(j);
+            if ((localView instanceof Button)) {
+                Button localButton2 = (Button) localView;
+                if (str.contains(((Button) localView).getText())) {
+                    this.mapView.put(Integer.valueOf(paramInt), localButton2);
+                    return localButton2;
+                }
+            }
+        }
+    }
 
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
+    public Button getViewByCode(int paramInt) {
+        if (!keyAndIds.containsKey(Integer.valueOf(paramInt))) {
+            return null;
+        }
+        int i = ((Integer) keyAndIds.get(Integer.valueOf(paramInt))).intValue();
+        return (Button) this.layout.findViewById(i);
+    }
 
-	
-	
+    public void log(String paramString) {
+        Log.i("keytest", paramString);
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
+        sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        setContentView(R.layout.keytest);
+        mContext = this;
+        this.layout = ((RelativeLayout) findViewById(R.id.layout));
+        //this.text1 = ((TextView) findViewById(R.id.text1));
+        //this.text2 = ((TextView) findViewById(R.id.text2));
+        success = (Button) findViewById(R.id.btn_success);
+        success.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Settings.System.putInt(mContext.getContentResolver(), "Khadas_irkey_test", 1);
+                finish();
+            }
+        });
+
+        fail = (Button) findViewById(R.id.btn_fail);
+        fail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Settings.System.putInt(mContext.getContentResolver(), "Khadas_irkey_test", 0);
+                finish();
+            }
+        });
+    }
+
+    public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent) {
+        log("down:keyCode:" + paramInt + ",event=" + paramKeyEvent);
+        Button localButton = getViewByCode(paramInt);
+        if (localButton != null)
+            localButton.setBackgroundResource(R.drawable.key_down);
+        return true;
+    }
+
+    public boolean onKeyUp(int paramInt, KeyEvent paramKeyEvent) {
+        if (paramInt == KeyEvent.KEYCODE_ENTER) {
+            log("ok is finish this keytest acivity");
+            this.finish();
+            return true;
+        }
+        log("up:keyCode:" + paramInt + ",event=" + paramKeyEvent);
+        Button localButton = getViewByCode(paramInt);
+        if (localButton != null)
+            localButton.setBackgroundResource(R.drawable.key_up);
+        return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            return false;
+        }
+        return super.dispatchKeyEvent(event);
+    }
 }
