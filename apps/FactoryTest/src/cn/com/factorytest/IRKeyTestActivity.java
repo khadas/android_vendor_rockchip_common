@@ -146,11 +146,4 @@ public class IRKeyTestActivity extends Activity {
     protected void onResume() {
         super.onResume();
     }
-
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-            return false;
-        }
-        return super.dispatchKeyEvent(event);
-    }
 }
