@@ -67,7 +67,7 @@
         </activity>
 
         <activity
-            android:name=".TPTestActivity"
+            android:name=".TouchTestActivity"
             android:exported="true"
             android:screenOrientation="landscape"
             android:hardwareAccelerated="true"

@@ -1,11 +1,8 @@
 package cn.com.factorytest;
 
 import java.util.HashMap;
-
 import android.widget.RelativeLayout;
-
 import java.io.File;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +18,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
@@ -41,7 +37,6 @@ public class MipiCameraTestActivity extends Activity implements SurfaceHolder.Ca
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
         setContentView(R.layout.camera_mipi);
         mContext = this;
         initSurfaceView();

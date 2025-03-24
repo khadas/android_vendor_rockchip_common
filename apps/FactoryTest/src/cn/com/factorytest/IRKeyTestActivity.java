@@ -91,7 +91,6 @@ public class IRKeyTestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
         setContentView(R.layout.keytest);
         mContext = this;
         this.layout = ((RelativeLayout) findViewById(R.id.layout));

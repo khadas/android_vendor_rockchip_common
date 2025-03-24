@@ -54,9 +54,7 @@ public class PhoneMicTestActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
-		sendBroadcast(new Intent("com.android.hide_upper_bar"));
 		setContentView(R.layout.phonemictest);
 		mContext = this;
 		mVUMeter = (VUMeter) findViewById(R.id.uvMeter);

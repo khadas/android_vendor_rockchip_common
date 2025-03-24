@@ -78,7 +78,7 @@
     <string name="TestError">hardware test have error item</string>
     <string name="showLength">char</string>
     <string name="showip">以太网IP地址 :</string>
-    <string name="showwifimac">Wifi MAC地址 :</string>
+    <string name="showwifimac">Wifi MAC :</string>
     <string name="showwifiip">Wifi IP地址 :</string>
     <string name="s_cpu_thermal">CPU Thermal :</string>
     <string name="s_cpu_freq">CPU Freq :</string>
@@ -88,8 +88,8 @@
     <string name="noexist">is no existent</string>
     <string name="exit">请按OK键退出</string>
     <string name="key_exit">请确认如下按键</string>	
-    <string name="mcu_version">MCU版本号 :</string>
-    <string name="firmware_version">固件版本号 :</string>
+    <string name="mcu_version">MCU版本 :</string>
+    <string name="firmware_version">固件版本 :</string>
     <string name="device_type">设备型号 :</string>
     <string name="mac_check">mac地址校验</string>
     <string name="invalid_mac">  mac地址无效</string>

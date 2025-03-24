@@ -77,6 +77,7 @@ public class Tools {
     public static  final String Blue_Led = "/sys/class/leds/blue_led/trigger";
 	public static  final String Rtc_time = "/sys/class/rtc/rtc0/time";
 	public static  final String ageing_status = "/sys/class/mcu/ageing_test";
+    public static  final String Edge2_IO = "/sys/class/es8316";
 
     public static final String cpu_thermal = "/sys/class/thermal/thermal_zone0/temp";
     public static final String cpu0_cpufreq = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq";

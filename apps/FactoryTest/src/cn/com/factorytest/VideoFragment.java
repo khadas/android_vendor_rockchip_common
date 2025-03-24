@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.VideoView;
 import android.os.Build;
-
+import android.os.SystemClock;
 import java.io.IOException;
 import java.util.Date;
 
@@ -27,7 +27,7 @@ public class VideoFragment extends Fragment implements MediaPlayer.OnCompletionL
     TextView mTestTime;
     VideoView mVideoView;
     Context mContext;
-    Date m_StartDate = new Date();
+    private long m_StartTime = SystemClock.elapsedRealtime();
     Handler mVideoHandler = new VideoHandler();
     final int MSG_UPDATE_TIME =  0;
     static int ageing_test_step = 0;
@@ -129,7 +129,7 @@ public class VideoFragment extends Fragment implements MediaPlayer.OnCompletionL
     private String getTime() {
         Date newDate = new Date();
 
-        long between = (newDate.getTime() - m_StartDate.getTime()) / 1000;
+        long between = (SystemClock.elapsedRealtime() - m_StartTime) / 1000;
         long day1 = between / (24 * 3600);
         long hour1 = between % (24 * 3600) / 3600;
         long hour_ageing = between / 3600;
@@ -140,7 +140,7 @@ public class VideoFragment extends Fragment implements MediaPlayer.OnCompletionL
             if ((hour_ageing >= MainActivity.ageing_time) && 1 == ageing_test_step) {
                 Tools.writeFile(Tools.ageing_status, "1");
                 ageing_test_step = 2;
-            } else if (1 == MainActivity.ageing_time && 1 == ageing_test_step && minute1 >= MainActivity.ageing_time) {
+            } else if (1 == MainActivity.ageing_time && 1 == ageing_test_step && minute1 >= 60 * MainActivity.ageing_time) {
                 Tools.writeFile(Tools.ageing_status, "1");
                 ageing_test_step = 2;
             }else if (0 == ageing_test_step) {
@@ -151,7 +151,7 @@ public class VideoFragment extends Fragment implements MediaPlayer.OnCompletionL
         if (between > (60 * 60 * MainActivity.ageing_time)) {
             return getResources().getString(R.string.long_test_finish);
         } else {
-            return "" + day1 + " : " + hour1 + " : " + minute1 + " : " + second1;
+            return String.format("%d : %02d : %02d : %02d", day1, Math.abs(hour1), Math.abs(minute1), Math.abs(second1));
         }
     }
 }

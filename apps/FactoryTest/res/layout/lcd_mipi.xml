@@ -8,4 +8,27 @@
 	android:focusable="true"
 	android:keepScreenOn="true">
 
+	<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_success"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="success" />
+
+        <Button
+            android:id="@+id/btn_fail"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="fail" />
+
+    </LinearLayout>
+
 </RelativeLayout>

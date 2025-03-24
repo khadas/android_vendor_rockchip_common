@@ -370,7 +370,6 @@ public class WriteMacActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		sendBroadcast(new Intent("com.android.hide_upper_bar"));
 		setContentView(R.layout.write_mac);
 		WriteMac_ok_flag = false;
 		WriteSn_ok_flag = false;

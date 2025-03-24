@@ -34,11 +34,11 @@ public class RebootTestActivity extends Activity {
         mRebootNumValue.setText("Number of restarts : " + reboot_num);
         new Thread(() -> {
         try {
-            Thread.sleep(10 * 1000);
+            Thread.sleep(2 * 1000);
             mHandler.post(() -> {
                 Settings.System.putInt(getContentResolver(), "Khadas_reboot_test_num", reboot_num + 1);
             });
-            Thread.sleep(1 * 1000);
+            Thread.sleep(10 * 1000);
             Process proc = Runtime.getRuntime().exec(new String[]{"reboot"});
             proc.waitFor();
         } catch (Exception e) {

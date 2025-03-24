@@ -28,11 +28,11 @@ public class MipiLCDTestActivity extends Activity {
     private int currentColorIndex = 0;
     private Context mContext;
     private boolean isTestCompleted = false;
+    private Button success, fail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
@@ -43,14 +43,29 @@ public class MipiLCDTestActivity extends Activity {
 
         updateBackgroundColor();
 
-        findViewById(R.id.content).setOnClickListener(v -> {
+        success = (Button) findViewById(R.id.btn_success);
+        success.setVisibility(View.GONE);
+        fail = (Button) findViewById(R.id.btn_fail);
+        fail.setVisibility(View.GONE);
+
+        findViewById(R.id.content).setOnClickListener(outerView -> {
             if (currentColorIndex < colors.length - 1) {
                 currentColorIndex++;
                 updateBackgroundColor();
             } else {
                 isTestCompleted = true;
-                Settings.System.putInt(mContext.getContentResolver(), "Khadas_mipi_lcd_test", 1);
-                finish();
+
+                success.setVisibility(View.VISIBLE);
+                fail.setVisibility(View.VISIBLE);
+
+                success.setOnClickListener(successView -> {
+                    Settings.System.putInt(mContext.getContentResolver(), "Khadas_mipi_lcd_test", 1);
+                    finish();
+                });
+                fail.setOnClickListener(failView -> {
+                    Settings.System.putInt(mContext.getContentResolver(), "Khadas_mipi_lcd_test", 0);
+                    finish();
+                });
             }
         });
     }
@@ -73,13 +88,5 @@ public class MipiLCDTestActivity extends Activity {
         if (hasFocus) {
             updateBackgroundColor();
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (!isTestCompleted) {
-            Settings.System.putInt(mContext.getContentResolver(), "Khadas_mipi_lcd_test", 0);
-        }
-        super.onDestroy();
     }
 }

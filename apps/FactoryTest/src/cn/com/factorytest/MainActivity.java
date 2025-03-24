@@ -42,7 +42,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.hardware.Camera;
 import android.view.Gravity;
-
 import java.io.FileReader;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -220,7 +219,7 @@ public class MainActivity extends Activity {
     //系统灯和网络灯测试时间 单位s
     int ledtime = 60;
     //videoview 全屏播放时间
-    private final long  MSG_PLAY_VIDEO_TIME= 30 * 60 * 1000;
+    //private final long  MSG_PLAY_VIDEO_TIME= 30 * 60 * 1000;
 
     private Context mContext;
     private BTDeviceReceiver mBTDeviceReceiver;
@@ -249,8 +248,6 @@ public class MainActivity extends Activity {
         currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         //进入产测apk设置最大音量
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
-
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
 
         m_TextView_TF = (TextView)findViewById(R.id.TextView_TF);
         m_TextView_USB1 = (TextView)findViewById(R.id.TextView_USB1);
@@ -577,7 +574,8 @@ public class MainActivity extends Activity {
     {
         super.onResume();
         //readVersion();
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        sendBroadcast(new Intent("com.android.show_upper_bar"));
+        sendBroadcast(new Intent("com.android.show_bottom_bar"));
 
         m_ddr_size.setText((Tools.getmem_TOLAL()*100/1024/1024/100.0)+" GB");
         m_nand_size.setText(Tools.getRomSize(this));
@@ -611,7 +609,7 @@ public class MainActivity extends Activity {
 
         updateEthandWifi();
 
-        mHandler.sendEmptyMessageDelayed(MSG_PLAY_VIDEO, MSG_PLAY_VIDEO_TIME);
+        //mHandler.sendEmptyMessageDelayed(MSG_PLAY_VIDEO, MSG_PLAY_VIDEO_TIME);
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_TIME_TICK);
         filter.addAction(Intent.ACTION_TIME_CHANGED);
@@ -714,15 +712,26 @@ public class MainActivity extends Activity {
             //bIsKeyDown = true;
             mHandler.sendEmptyMessageDelayed(MSG_TIME, 1 * 1000);
          }  
-     };
-    
+    };
+
+    @Override
+    protected void onPause() {
+        mHandler.removeMessages(MSG_NETLED_TEST_Start);
+        //mHandler.removeMessages(MSG_POWERLED_TEST_Start);
+        mHandler.removeMessages(MSG_PLAY_VIDEO);
+        unregisterReceiver(mFactoryReceiver);
+        unregisterReceiver(mountReceiver);
+        if(mAudioManager != null)
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
+        super.onPause();
+    }
+
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub
         if(mAudioManager != null)
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
         unregisterBTReceiver();
-        sendBroadcast(new Intent("com.android.show_upper_bar"));
         super.onDestroy();
     }
 
@@ -734,19 +743,6 @@ public class MainActivity extends Activity {
                 mBTDeviceReceiver = null;
             }
         }
-    }
-
-    @Override
-    protected void onPause() {
-        mHandler.removeMessages(MSG_NETLED_TEST_Start);
-        //mHandler.removeMessages(MSG_POWERLED_TEST_Start);
-        mHandler.removeMessages(MSG_PLAY_VIDEO);
-        unregisterReceiver(mFactoryReceiver);
-        unregisterReceiver(mountReceiver);
-        if(mAudioManager != null)
-            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
-        sendBroadcast(new Intent("com.android.show_upper_bar"));
-        super.onPause();
     }
 
     public void NetLed_Test(View view){
@@ -763,63 +759,74 @@ public class MainActivity extends Activity {
         mHandler.sendEmptyMessage(MSG_POWERLED_TEST_Start);
     }
 
-    public void Write_mac_usid(View view){
-        Log.e(TAG, "Write_mac_usid()");
-        m_Button_write_mac_usid.setTag(0);
-        Intent intent = new Intent(this, WriteMacActivity.class);
+    public void speaker_MIC(View view){
+        Log.e(TAG, "hlm MIC");
+        Intent intent = new Intent(this, PhoneMicTestActivity.class);
+        sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void IRKeyTest(View view){
         Log.e(TAG, "IRKeyTest()");
         Intent intent = new Intent(this, IRKeyTestActivity.class);
+        sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void Mipi_Camera(View view) {
         Log.d(TAG, "Mipi_Camera()");
         Intent intent = new Intent(this, MipiCameraTestActivity.class);
+        sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void Mipi_LCD(View view) {
         Log.d(TAG, "Mipi_LCD()");
         Intent intent = new Intent(this, MipiLCDTestActivity.class);
+        sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void TP_Test(View view) {
         Log.d(TAG, "TP_Test()");
-        Intent intent = new Intent(this, TPTestActivity.class);
+        Intent intent = new Intent(this, TouchTestActivity.class);
+        sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
+        startActivity(intent);
+    }
+
+    public void Write_mac_usid(View view){
+        Log.e(TAG, "Write_mac_usid()");
+        m_Button_write_mac_usid.setTag(0);
+        Intent intent = new Intent(this, WriteMacActivity.class);
+        sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void Restore_MCU_settings(View view){
         String strSn = "";
-
         Log.e(TAG, "hlm Restore_MCU_settings");
         Tools.writeFile("/sys/class/mcu/rst", "0");
         strSn =  Tools.readFile(Tools.Key_OTP_Sn);
         Log.d(TAG, "strSn : " + strSn);
 
-        String path = MainActivity.udisk_backup + "/Pictures/";
-        String cmd_val = "ls " + path;
+        String path = MainActivity.udisk_backup + "/";
+        /*String cmd_val = "ls " + path;
         Log.d(TAG, "cmd_val : " + cmd_val);
         if(Tools.exec(cmd_val).contains("No such file or directory")){
-            cmd_val = "mkdir -p" + path;
+            cmd_val = "mkdir -p " + path;
             Tools.exec(cmd_val);
-        }
-        cmd_val = "screencap -p " + path + strSn + ".png";
+        }*/
+        String cmd_val = "screencap -p " + path + strSn + ".png";
         Log.d(TAG, "screencap cmd_val : " + cmd_val);
         if(Tools.exec(cmd_val).contains("")){
             m_Button_Restore_MCU_settings.setTextColor(Color.GREEN);
         }
-    }
-
-    public void speaker_MIC(View view){
-        Log.e(TAG, "hlm MIC");
-        Intent intent = new Intent(this, PhoneMicTestActivity.class);
-        startActivity(intent);
     }
 
     public void KeyTest(View view){
@@ -1661,7 +1668,7 @@ public class MainActivity extends Activity {
 
                 case MSG_GET_CPU_STATUS:
                     m_TextView_CPU_THERMAL.setText(Tools.readFile(Tools.cpu_thermal));
-                    m_TextView_CPU_FREQ.setText("0-3:" + Tools.readFile(Tools.cpu0_cpufreq) + " 4-7: " + Tools.readFile(Tools.cpu4_cpufreq));
+                    m_TextView_CPU_FREQ.setText("0-3:" + Tools.readFile(Tools.cpu0_cpufreq).trim().substring(0, 4) + " 4-7: " + Tools.readFile(Tools.cpu4_cpufreq).trim().substring(0, 4));
                     break;
             }
         }
@@ -1807,7 +1814,7 @@ public class MainActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         mHandler.removeMessages(MSG_PLAY_VIDEO);
-        mHandler.sendEmptyMessageDelayed(MSG_PLAY_VIDEO, MSG_PLAY_VIDEO_TIME);
+        //mHandler.sendEmptyMessageDelayed(MSG_PLAY_VIDEO, MSG_PLAY_VIDEO_TIME);
         mLeftLayout.setVisibility(View.VISIBLE);
         //mBottomLayout.setVisibility(View.VISIBLE);
         mBottomLayout2.setVisibility(View.VISIBLE);
