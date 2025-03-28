@@ -51,7 +51,7 @@ public class TouchTestActivity extends Activity {
 
         touchTestView = findViewById(R.id.touchView);
         resultButtons = findViewById(R.id.resultButtons);
-        
+
         Button btnSuccess = findViewById(R.id.btn_success);
         Button btnFail = findViewById(R.id.btn_fail);
 

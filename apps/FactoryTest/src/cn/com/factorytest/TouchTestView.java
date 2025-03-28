@@ -43,7 +43,7 @@ public class TouchTestView extends View {
             Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.CYAN,
             Color.MAGENTA, Color.GRAY, Color.DKGRAY, Color.LTGRAY, Color.BLACK
     };
-    
+
     private List<PointF> touchPoints = new ArrayList<>();
     private List<PointF> savedPoints = new ArrayList<>();
     private Path trackPath = new Path();
@@ -143,7 +143,7 @@ public class TouchTestView extends View {
         if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP) {
             return;
         }
-    
+
         if (pointerCount == 10) {
             touchPoints.clear();
             for (int i = 0; i < 10; i++) {

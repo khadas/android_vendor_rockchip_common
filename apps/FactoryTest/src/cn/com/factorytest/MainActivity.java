@@ -92,6 +92,7 @@ public class MainActivity extends Activity {
     public static boolean mipi_lcd_test = false;
     public static boolean tp_test = false;
     public static boolean wirte_mac = false;
+    public static boolean burn_efuse_flag = false;
     public static boolean reset_mcu = false;
 
     public static boolean power_led_test = false;
@@ -214,7 +215,7 @@ public class MainActivity extends Activity {
     String readMac = "";
     String readSn = "";
     String readDeviceid = "";
-    
+
     private boolean bIsKeyDown = false;
     //系统灯和网络灯测试时间 单位s
     int ledtime = 60;
@@ -708,10 +709,10 @@ public class MainActivity extends Activity {
 
         @Override
         public void afterTextChanged(Editable s)
-        {          
+        {
             //bIsKeyDown = true;
             mHandler.sendEmptyMessageDelayed(MSG_TIME, 1 * 1000);
-         }  
+         }
     };
 
     @Override
@@ -816,15 +817,16 @@ public class MainActivity extends Activity {
         Log.d(TAG, "strSn : " + strSn);
 
         String path = MainActivity.udisk_backup + "/";
-        /*String cmd_val = "ls " + path;
+        String cmd_val = "ls " + path;
         Log.d(TAG, "cmd_val : " + cmd_val);
         if(Tools.exec(cmd_val).contains("No such file or directory")){
             cmd_val = "mkdir -p " + path;
             Tools.exec(cmd_val);
-        }*/
-        String cmd_val = "screencap -p " + path + strSn + ".png";
+        }
+        cmd_val = "screencap -p " + path + strSn + ".png";
         Log.d(TAG, "screencap cmd_val : " + cmd_val);
         if(Tools.exec(cmd_val).contains("")){
+            Tools.exec("sync");
             m_Button_Restore_MCU_settings.setTextColor(Color.GREEN);
         }
     }
@@ -1673,9 +1675,8 @@ public class MainActivity extends Activity {
             }
         }
     }
-    
+
     private void CheckSameMac(String Scanmac){
-        
         if (Scanmac.equalsIgnoreCase(readMac)) {
             Toast.makeText(getApplicationContext(),getResources().getString(R.string.testled), Toast.LENGTH_LONG).show();
             m_mactitle.setText(readMac + "   "+ getResources().getString(R.string.the_same_mac));

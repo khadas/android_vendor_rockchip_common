@@ -140,7 +140,7 @@ public class VideoFragment extends Fragment implements MediaPlayer.OnCompletionL
             if ((hour_ageing >= MainActivity.ageing_time) && 1 == ageing_test_step) {
                 Tools.writeFile(Tools.ageing_status, "1");
                 ageing_test_step = 2;
-            } else if (1 == MainActivity.ageing_time && 1 == ageing_test_step && minute1 >= 60 * MainActivity.ageing_time) {
+            } else if (1 == MainActivity.ageing_time && 1 == ageing_test_step && minute1 >= MainActivity.ageing_time) {
                 Tools.writeFile(Tools.ageing_status, "1");
                 ageing_test_step = 2;
             }else if (0 == ageing_test_step) {
