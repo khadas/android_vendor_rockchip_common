@@ -90,8 +90,13 @@ public class PhoneMicTestActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-
 		super.onResume();
+		Intent upper = new Intent("com.android.hide_upper_bar");
+		upper.putExtra("isSave", false);
+		sendBroadcast(upper);
+		Intent bottom = new Intent("com.android.hide_bottom_bar");
+		bottom.putExtra("isSave", false);
+		sendBroadcast(bottom);
 
 		this.isSDcardTestOk = false;
 		if (!Environment.getExternalStorageState().equals(
@@ -129,33 +134,38 @@ public class PhoneMicTestActivity extends Activity implements OnClickListener {
 
 		super.onPause();
 		//Tools.writeFile("/sys/class/w25q128fw/buzzer", "0");
+		Intent upper = new Intent("com.android.show_upper_bar");
+		upper.putExtra("isSave", false);
+		sendBroadcast(upper);
+		Intent bottom = new Intent("com.android.show_bottom_bar");
+		bottom.putExtra("isSave", false);
+		sendBroadcast(bottom);
 
 		if (this.isSDcardTestOk) {
-
 			switch (this.mRecorder.state()) {
-
-			case Recorder.IDLE_STATE:
-				this.mRecorder.delete();
-				break;
-			case Recorder.PLAYING_STATE:
-				this.mRecorder.stop();
-				this.mRecorder.delete();
-				break;
-			case Recorder.RECORDING_STATE:
-				this.mRecorder.stop();
-				this.mRecorder.clear();
-				break;
+				case Recorder.IDLE_STATE:
+					this.mRecorder.delete();
+					break;
+				case Recorder.PLAYING_STATE:
+					this.mRecorder.stop();
+					this.mRecorder.delete();
+					break;
+				case Recorder.RECORDING_STATE:
+					this.mRecorder.stop();
+					this.mRecorder.clear();
+					break;
 			}
 
-			
 			mAudioManager.setStreamVolume(3, mOldVolume, 0);
-
 			if (mSpeakerOn) {
 				mAudioManager.setSpeakerphoneOn(false);
-
 			}
 		}
+	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
 	}
 
 	public void stopMediaPlayBack() {

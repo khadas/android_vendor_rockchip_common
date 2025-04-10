@@ -575,8 +575,8 @@ public class MainActivity extends Activity {
     {
         super.onResume();
         //readVersion();
-        sendBroadcast(new Intent("com.android.show_upper_bar"));
-        sendBroadcast(new Intent("com.android.show_bottom_bar"));
+        //sendBroadcast(new Intent("com.android.show_upper_bar"));
+        //sendBroadcast(new Intent("com.android.show_bottom_bar"));
 
         m_ddr_size.setText((Tools.getmem_TOLAL()*100/1024/1024/100.0)+" GB");
         m_nand_size.setText(Tools.getRomSize(this));
@@ -717,6 +717,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onPause() {
+        super.onPause();
         mHandler.removeMessages(MSG_NETLED_TEST_Start);
         //mHandler.removeMessages(MSG_POWERLED_TEST_Start);
         mHandler.removeMessages(MSG_PLAY_VIDEO);
@@ -724,16 +725,15 @@ public class MainActivity extends Activity {
         unregisterReceiver(mountReceiver);
         if(mAudioManager != null)
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
-        super.onPause();
     }
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
         // TODO Auto-generated method stub
         if(mAudioManager != null)
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolume, 0);
         unregisterBTReceiver();
-        super.onDestroy();
     }
 
     private void unregisterBTReceiver() {
@@ -763,40 +763,40 @@ public class MainActivity extends Activity {
     public void speaker_MIC(View view){
         Log.e(TAG, "hlm MIC");
         Intent intent = new Intent(this, PhoneMicTestActivity.class);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
-        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
+        //sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        //sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void IRKeyTest(View view){
         Log.e(TAG, "IRKeyTest()");
         Intent intent = new Intent(this, IRKeyTestActivity.class);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
-        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
+        //sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        //sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void Mipi_Camera(View view) {
         Log.d(TAG, "Mipi_Camera()");
         Intent intent = new Intent(this, MipiCameraTestActivity.class);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
-        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
+        //sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        //sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void Mipi_LCD(View view) {
         Log.d(TAG, "Mipi_LCD()");
         Intent intent = new Intent(this, MipiLCDTestActivity.class);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
-        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
+        //sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        //sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
     public void TP_Test(View view) {
         Log.d(TAG, "TP_Test()");
         Intent intent = new Intent(this, TouchTestActivity.class);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
-        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
+        //sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        //sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 
@@ -804,8 +804,8 @@ public class MainActivity extends Activity {
         Log.e(TAG, "Write_mac_usid()");
         m_Button_write_mac_usid.setTag(0);
         Intent intent = new Intent(this, WriteMacActivity.class);
-        sendBroadcast(new Intent("com.android.hide_upper_bar"));
-        sendBroadcast(new Intent("com.android.hide_bottom_bar"));
+        //sendBroadcast(new Intent("com.android.hide_upper_bar"));
+        //sendBroadcast(new Intent("com.android.hide_bottom_bar"));
         startActivity(intent);
     }
 

@@ -137,12 +137,29 @@ public class IRKeyTestActivity extends Activity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onResume() {
+        super.onResume();
+        Intent upper = new Intent("com.android.hide_upper_bar");
+        upper.putExtra("isSave", false);
+        sendBroadcast(upper);
+        Intent bottom = new Intent("com.android.hide_bottom_bar");
+        bottom.putExtra("isSave", false);
+        sendBroadcast(bottom);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onPause() {
+        super.onPause();
+        Intent upper = new Intent("com.android.show_upper_bar");
+        upper.putExtra("isSave", false);
+        sendBroadcast(upper);
+        Intent bottom = new Intent("com.android.show_bottom_bar");
+        bottom.putExtra("isSave", false);
+        sendBroadcast(bottom);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
