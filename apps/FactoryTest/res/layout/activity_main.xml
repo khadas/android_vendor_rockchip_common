@@ -89,7 +89,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/KEY_Test"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textColor="#FF5555FF" >
                     </TextView>
 
@@ -328,6 +328,31 @@
                         android:textColor="@android:color/white">
                     </Button>
 
+                    <Button
+                        android:onClick="Write_mac_usid"
+                        android:id="@+id/Button_Writemac"
+                        android:paddingLeft="20dp"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp"
+                        android:text="@string/WriteMac"
+                        android:textSize="19sp"
+                        android:textColor="@android:color/white" >
+                    </Button>
+
+                    <Button
+                        android:onClick="Restore_MCU_settings"
+                        android:id="@+id/Restore_MCU_settings"
+                        android:paddingLeft="20dp"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/Restore_MCU_settings"
+                        android:minHeight="0dp"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/white" >
+                    </Button>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -335,32 +360,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-
-                        <Button
-                            android:onClick="Write_mac_usid"
-                            android:id="@+id/Button_Writemac"
-                            android:paddingLeft="20dp"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="35dp"
-                            android:text="@string/WriteMac"
-                            android:textSize="19sp"
-                            android:textColor="@android:color/white" >
-                        </Button>
-
-                        <Button
-                            android:onClick="Restore_MCU_settings"
-                            android:id="@+id/Restore_MCU_settings"
-                            android:paddingLeft="20dp"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:text="@string/Restore_MCU_settings"
-                            android:minHeight="0dp"
-                            android:textSize="20sp"
-                            android:textColor="@android:color/white" >
-                        </Button>
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_infoBarCode"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"/>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

@@ -32,6 +32,7 @@ import android.widget.SeekBar;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothAdapter;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.text.Editable;
 import android.text.format.Formatter;
@@ -42,6 +43,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.hardware.Camera;
 import android.view.Gravity;
+
+import com.google.gson.Gson;
+import cn.com.factorytest.encoding.EncodingUtils;
+import android.graphics.Bitmap;
+
 import java.io.FileReader;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -59,6 +65,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.math.*;
+import android.os.SystemProperties;
+import android.text.TextUtils;
 
 public class MainActivity extends Activity {
 
@@ -68,35 +76,84 @@ public class MainActivity extends Activity {
     public static String udisk_backup = "";
 
     public static boolean tfcard_test = false;
+    private static boolean tfcard_test_ret = false;
+
     public static boolean usb20_test = false;
+    private static boolean usb20_test_ret = false;
+
     public static boolean usb30_test = false;
+    private static boolean usb30_test_ret = false;
+
     public static boolean spi_test = false;
+    private static boolean spi_test_ret = false;
+
     public static boolean key_test = false;
+    private static boolean key_test_ret = false;
+
     public static boolean bt_test = false;
+    private static boolean bt_test_ret = false;
+
     public static boolean wifi_test = false;
+    private static boolean wifi_test_ret = false;
 
     public static boolean mcu_test = false;
+    private static boolean mcu_test_ret = false;
+
     public static boolean hdmi_test = false;
+    private static boolean hdmi_test_ret = false;
+
     public static boolean dp_test = false;
+    private static boolean dp_test_ret = false;
+
     public static boolean fusb302_test = false;
+    private static boolean fusb302_test_ret = false;
+
     public static boolean gsensor_test = false;
+    private static boolean gsensor_test_ret = false;
+
     public static boolean rtc_test = false;
+    private static boolean rtc_test_ret = false;
+
     public static boolean board_key_test = false;
+    private static boolean board_key_test_ret = false;
+
     public static boolean ageing_test = false;
+    private static boolean ageing_test_ret = false;
+
     private static boolean ageing_test_ok_flag = false;
 
     public static boolean led_test = false;
+    private static boolean led_test_ret = false;
+
     public static boolean mic_test = false;
+    private static boolean mic_test_ret = false;
+
     public static boolean irkey_test = false;
+    private static boolean irkey_test_ret = false;
+
     public static boolean mipi_camera_test = false;
+    private static boolean mipi_camera_test_ret = false;
+
     public static boolean mipi_lcd_test = false;
+    private static boolean mipi_lcd_test_ret = false;
+
     public static boolean tp_test = false;
+    private static boolean tp_test_ret = false;
+
     public static boolean wirte_mac = false;
+    private static boolean wirte_mac_ret = false;
+
     public static boolean burn_efuse_flag = false;
+    private static boolean burn_efuse_flag_ret = false;
+
     public static boolean reset_mcu = false;
+    private static boolean reset_mcu_ret = false;
 
     public static boolean power_led_test = false;
+    private static boolean power_led_test_ret = false;
+
     public static boolean device_id_test = false;
+    private static boolean device_id_test_ret = false;
 
     TextView m_mcu_version;
     TextView m_firmware_version;
@@ -143,6 +200,7 @@ public class MainActivity extends Activity {
     Button m_Button_speaker_MIC;
     Button m_Button_write_mac_usid;
     Button m_Button_Restore_MCU_settings;
+    ImageView m_ImageView_infoBarCode;
 
     Handler mHandler = new FactoryHandler();
 
@@ -191,6 +249,8 @@ public class MainActivity extends Activity {
     private final int MSG_KEY_TEST_OK = 119;
     private final int MSG_GET_CPU_STATUS = 120;
     private final int MSG_TIME = 777;
+
+    private final int MSG_TEST_RET_UPDATE = 1000;
     private static final String nullip = "0.0.0.0";
     private static final String USB_PATH = (Tools.isAndroid5_1_1()?"/storage/udisk":"/storage/external_storage/sd");
     private static final String USB1_PATH = (Tools.isAndroid5_1_1()?"/storage/udisk0":"/storage/external_storage/sda");
@@ -434,9 +494,10 @@ public class MainActivity extends Activity {
 
         new Thread() {
             public void run() {
-                while(true) {
+                while (true) {
                     try {
                         mHandler.sendEmptyMessage(MSG_GET_CPU_STATUS);
+                        mHandler.sendEmptyMessage(MSG_TEST_RET_UPDATE);
                         Thread.sleep(1000);
                         if(2 == VideoFragment.ageing_test_step && !ageing_test_ok_flag) {
                             mHandler.sendEmptyMessage(MSG_AGEING_TEST_OK);
@@ -450,8 +511,72 @@ public class MainActivity extends Activity {
                 }
             }
         }.start();
+
+        m_ImageView_infoBarCode = (ImageView)findViewById(R.id.iv_infoBarCode);
+        m_ImageView_infoBarCode.setVisibility(View.GONE);
     }
 
+    private void checkTestRetUpate() {
+
+        Log.d("TESTINFO", "=================================checkTestRetUpate start===========================================");
+        Log.d("TESTINFO", "tfcard_test " + tfcard_test +  " tfcard_test_ret " +  tfcard_test_ret + " RET " + (tfcard_test ? (tfcard_test & tfcard_test_ret) : true));
+        Log.d("TESTINFO", "usb20_test " + usb20_test +  " usb20_test_ret " +  usb20_test_ret + " RET " + (usb20_test ? (usb20_test & usb20_test_ret) : true));
+        Log.d("TESTINFO", "usb30_test " + usb30_test +  " usb30_test_ret " +  usb30_test_ret + " RET " + (usb30_test ? (usb30_test & usb30_test_ret) : true));
+        Log.d("TESTINFO", "spi_test " + spi_test +  " spi_test_ret " +  spi_test_ret + " RET " + (spi_test ? (spi_test & spi_test_ret) : true));
+        Log.d("TESTINFO", "gsensor_test " + gsensor_test +  " gsensor_test_ret " +  gsensor_test_ret + " RET " +  (gsensor_test ? (gsensor_test & gsensor_test_ret) : true));
+        Log.d("TESTINFO", "mcu_test " + mcu_test +  " mcu_test_ret " +  mcu_test_ret + " RET " + (mcu_test ? (mcu_test & mcu_test_ret) : true));
+        Log.d("TESTINFO", "hdmi_test " + hdmi_test +  " hdmi_test_ret " +  hdmi_test_ret + " RET " +  (hdmi_test ? (hdmi_test & hdmi_test_ret) : true));
+        Log.d("TESTINFO", "dp_test " + dp_test +  " dp_test_ret " +  dp_test_ret + " RET " +  (dp_test ? (dp_test & dp_test_ret) : true));
+        Log.d("TESTINFO", "fusb302_test " + fusb302_test +  " fusb302_test_ret " +  fusb302_test_ret + " RET " + (fusb302_test ? (fusb302_test & fusb302_test_ret) : true));
+        Log.d("TESTINFO", "wifi_test " + wifi_test +  " wifi_test_ret " +  wifi_test_ret + " RET " + (wifi_test ? (wifi_test & wifi_test_ret) : true));
+        Log.d("TESTINFO", "bt_test " + bt_test +  " bt_test_ret " +  bt_test_ret + " RET " + (bt_test ? (bt_test & bt_test_ret) : true));
+        Log.d("TESTINFO", "rtc_test " + rtc_test +  " rtc_test_ret " +  rtc_test_ret + " RET " + (rtc_test ? (rtc_test & rtc_test_ret) : true));
+        Log.d("TESTINFO", "ageing_test " + ageing_test +  " ageing_test_ret " +  ageing_test_ret + " RET " + (ageing_test ? (ageing_test & ageing_test_ret) : true));
+        Log.d("TESTINFO", "power_led_test " + power_led_test +  " power_led_test_ret " +  power_led_test_ret + " RET " + (power_led_test ? (power_led_test & power_led_test_ret) : true));
+        Log.d("TESTINFO", "irkey_test " + irkey_test +  " irkey_test_ret " +  irkey_test_ret + " RET " + (irkey_test ? (irkey_test & irkey_test_ret) : true));
+        Log.d("TESTINFO", "mic_test " + mic_test +  " mic_test_ret " +  mic_test_ret + " RET " + (mic_test ? (mic_test & mic_test_ret) : true));
+        Log.d("TESTINFO", "mipi_camera_test " + mipi_camera_test +  " mipi_camera_test_ret " +  mipi_camera_test_ret + " RET " + (mipi_camera_test ? (mipi_camera_test & mipi_camera_test_ret) : true));
+        Log.d("TESTINFO", "board_key_test " + board_key_test +  " board_key_test_ret " +  board_key_test_ret + " RET " + (board_key_test ? (board_key_test & board_key_test_ret) : true));
+        Log.d("TESTINFO", "key_test " + key_test +  " key_test_ret " +  key_test_ret + " RET " + (key_test ? (key_test & key_test_ret) : true));
+        Log.d("TESTINFO", "reset_mcu " + reset_mcu +  " reset_mcu_ret " +  reset_mcu_ret + " RET " + (reset_mcu ? (reset_mcu & reset_mcu_ret) : true));
+        Log.d("TESTINFO", "mipi_lcd_test " + mipi_lcd_test +  " mipi_lcd_test_ret " +  mipi_lcd_test_ret + " RET " + (mipi_lcd_test ? (mipi_lcd_test & mipi_lcd_test_ret) : true));
+        Log.d("TESTINFO", "tp_test " + tp_test +  " tp_test_ret " +  tp_test_ret + " RET " + (tp_test ? (tp_test & tp_test_ret) : true));
+        Log.d("TESTINFO", "wirte_mac " + wirte_mac +  " wirte_mac_ret " +  wirte_mac_ret + " RET " + (wirte_mac ? (wirte_mac & wirte_mac_ret) : true));
+        Log.d("TESTINFO", "ageing_test_ok_flag " + ageing_test_ok_flag);
+        Log.d("TESTINFO", "=================================checkTestRetUpate end===========================================");
+
+        if((tfcard_test ? (tfcard_test & tfcard_test_ret) : true) && (usb20_test ? (usb20_test & usb20_test_ret) : true) &&
+                (usb30_test ? (usb30_test & usb30_test_ret) : true) &&
+                (spi_test ? (spi_test & spi_test_ret) : true) &&
+                (gsensor_test ? (gsensor_test & gsensor_test_ret) : true) && (mcu_test ? (mcu_test & mcu_test_ret) : true) &&
+                (hdmi_test ? (hdmi_test & hdmi_test_ret) : true) && (dp_test ? (dp_test & dp_test_ret) : true) &&
+                (fusb302_test ? (fusb302_test & fusb302_test_ret) : true) &&
+                (wifi_test ? (wifi_test & wifi_test_ret) : true) &&
+                (bt_test ? (bt_test & bt_test_ret) : true) && (rtc_test ? (rtc_test & rtc_test_ret) : true) &&
+                (ageing_test ? (ageing_test & ageing_test_ret) : true) && (power_led_test ? (power_led_test & power_led_test_ret) : true) &&
+                (irkey_test ? (irkey_test & irkey_test_ret) : true) &&
+                (mic_test ? (mic_test & mic_test_ret) : true) && (mipi_camera_test ? (mipi_camera_test & mipi_camera_test_ret) : true) &&
+                (board_key_test ? (board_key_test & board_key_test_ret) : true) && (key_test ? (key_test & key_test_ret) : true) &&
+                (reset_mcu ? (reset_mcu & reset_mcu_ret) : true) &&
+                (mipi_lcd_test ? (mipi_lcd_test & mipi_lcd_test_ret) : true) && (tp_test ? (tp_test & tp_test_ret) : true) &&
+                (wirte_mac ? (wirte_mac & wirte_mac_ret) : true)) {
+            DevBarcodeInfo devBarcodeInfo = new DevBarcodeInfo();
+            devBarcodeInfo.setModel(""+MainActivity.test_board);
+            devBarcodeInfo.setMac(""+getMac());
+            devBarcodeInfo.setSn(""+getSn());
+            devBarcodeInfo.setMcu(""+getMCUVersion());
+            devBarcodeInfo.setFw(""+Build.DISPLAY);
+            devBarcodeInfo.setDdr(""+Tools.getMemSize());
+            devBarcodeInfo.setFlash(""+Tools.getRomSize(this));
+            devBarcodeInfo.setRemark("");
+            Gson json = new Gson();
+            String showBardCode = json.toJson(devBarcodeInfo);
+            Bitmap bitmap = EncodingUtils.createQRCode(showBardCode, 500, 500, null);
+            m_ImageView_infoBarCode.setImageBitmap(bitmap);
+            m_ImageView_infoBarCode.setVisibility(View.VISIBLE);
+            Log.d(TAG, "showBardCode:" + showBardCode);
+        }
+    }
     private String execSuCmd(String cmd) {
         try {
             Process mProcess = Runtime.getRuntime().exec("cmdclient "+cmd);
@@ -570,6 +695,56 @@ public class MainActivity extends Activity {
         }
     }
 
+    private String getMCUVersion() {
+        String mcuversion = Tools.exec("i2cget -f -y 2 0x18 0x13");
+        String formattedVersion = "ERR";
+        if (mcuversion != null && mcuversion.startsWith("0x")) {
+            formattedVersion = "" + mcuversion.substring(2).toUpperCase();
+        }
+        return formattedVersion.trim();
+    }
+
+    private String getSn() {
+        String strSn = Tools.readFile(Tools.Key_OTP_Sn);
+        int len = strSn.length();
+        if (len != getResources().getInteger(R.integer.config_sn_length)) {
+            strSn = "ERR";
+        }
+        return strSn;
+    }
+
+    private String getMac() {
+        String strMac = "ERR";
+        int length = 0;
+
+        strMac = Tools.readFile(Tools.Key_OTP_Mac);
+        length = strMac.length();
+        if (length != 12) {
+            strMac = "ERR";
+        } else {
+            String strTmpMac = "";
+            for(int i = 0; i < length; i += 2) {
+                strTmpMac += strMac.substring(i, (i + 2) < length ? (i + 2) :  length );
+                if( (i + 2) < length) strTmpMac += ':';
+            }
+            strMac = strTmpMac;
+        }
+        return strMac;
+    }
+
+    private boolean checkMacAndSnOk() {
+//        String mac = getMac();
+//        if (TextUtils.isEmpty(mac) || mac.equals("ERR") || mac.equals("00:00:00:00:00:00")) {
+//    	      return false;
+//    	  }
+
+          String sn = getSn();
+          if (TextUtils.isEmpty(sn) || "".equals(sn.replaceAll("0", ""))) {
+              return false;
+          }
+          return true;
+    }
+
     @Override
     protected void onResume()
     {
@@ -578,33 +753,35 @@ public class MainActivity extends Activity {
         //sendBroadcast(new Intent("com.android.show_upper_bar"));
         //sendBroadcast(new Intent("com.android.show_bottom_bar"));
 
-        m_ddr_size.setText((Tools.getmem_TOLAL()*100/1024/1024/100.0)+" GB");
+        m_ddr_size.setText(Tools.getMemSize());
         m_nand_size.setText(Tools.getRomSize(this));
 
-        String mcuversion = Tools.exec("i2cget -f -y 2 0x18 0x13");
-        if (mcuversion != null && mcuversion.startsWith("0x")) {
-            String formattedVersion = "V" + mcuversion.substring(2).toUpperCase();
-            m_mcu_version.setText(formattedVersion);
-        } else {
-            m_mcu_version.setText("Error");
-        }
+//        String mcuversion = Tools.exec("i2cget -f -y 2 0x18 0x13");
+//        if (mcuversion != null && mcuversion.startsWith("0x")) {
+//            String formattedVersion = "V" + mcuversion.substring(2).toUpperCase();
+//            m_mcu_version.setText(formattedVersion);
+//        } else {
+//            m_mcu_version.setText("Error");
+//        }
+        m_mcu_version.setText(getMCUVersion());
 
         String display = Build.DISPLAY;
-        StringBuilder result = new StringBuilder();
-        if (display != null) {
-        String[] segments = display.split("-");
-            for (String segment : segments) {
-                if (!"Edge2".equals(segment)) {
-                    result.append(segment).append("-");
-                }
-            }
-            if (result.length() > 0) {
-                result.setLength(result.length() - 1);
-                String finalStr = result.toString();
-                finalStr = Character.toUpperCase(finalStr.charAt(0)) + finalStr.substring(1);
-                m_firmware_version.setText(finalStr);
-            }
-        }
+        m_firmware_version.setText(display);
+//        StringBuilder result = new StringBuilder();
+//        if (display != null) {
+//        String[] segments = display.split("-");
+//            for (String segment : segments) {
+//                if (!"Edge2".equals(segment)) {
+//                    result.append(segment).append("-");
+//                }
+//            }
+//            if (result.length() > 0) {
+//                result.setLength(result.length() - 1);
+//                String finalStr = result.toString();
+//                finalStr = Character.toUpperCase(finalStr.charAt(0)) + finalStr.substring(1);
+//                m_firmware_version.setText(finalStr);
+//            }
+//        }
 
         m_device_type.setText(Build.MODEL);
 
@@ -638,22 +815,24 @@ public class MainActivity extends Activity {
 //            m_macvalue.setText(strTmpMac+" ");
 //        }
 
-        String strSn = Tools.readFile(Tools.Key_OTP_Sn);
-        int length = strSn.length();
-        Log.d(TAG,"SN length= "+length);
-        if (length != getResources().getInteger(R.integer.config_sn_length)) {
-            m_snvalue.setTextColor(Color.RED);
-            m_snvalue.setText("ERR");
-        } else {
-            m_snvalue.setTextColor(Color.RED);
-            m_snvalue.setText(strSn+" ");
-        }
+//        String strSn = Tools.readFile(Tools.Key_OTP_Sn);
+//        int length = strSn.length();
+//        Log.d(TAG,"SN length= "+length);
+//        if (length != getResources().getInteger(R.integer.config_sn_length)) {
+//            m_snvalue.setTextColor(Color.RED);
+//            m_snvalue.setText("ERR");
+//        } else {
+//            m_snvalue.setTextColor(Color.RED);
+//            m_snvalue.setText(strSn+" ");
+//        }
+        m_snvalue.setText(getSn());
 
         m_maccheck.requestFocus();
         int rec = 2;
         rec = Settings.System.getInt(mContext.getContentResolver(), "Khadas_speaker_mic_test", 2);
         if (rec == 1) {
             m_Button_speaker_MIC.setTextColor(Color.GREEN);
+            mic_test_ret = true;
         } else if (rec == 0) {
             m_Button_speaker_MIC.setTextColor(Color.RED);
         }
@@ -661,6 +840,7 @@ public class MainActivity extends Activity {
         rec = Settings.System.getInt(mContext.getContentResolver(), "Khadas_irkey_test", 2);
         if (rec == 1) {
             m_Button_IRKey.setTextColor(Color.GREEN);
+             irkey_test_ret = true;
         } else if (rec == 0) {
             m_Button_IRKey.setTextColor(Color.RED);
         }
@@ -668,6 +848,7 @@ public class MainActivity extends Activity {
         rec = Settings.System.getInt(mContext.getContentResolver(), "Khadas_mipi_camera_test", 2);
         if (rec == 1) {
             m_Button_Mipi_Camera.setTextColor(Color.GREEN);
+            mipi_camera_test_ret = true;
         } else if (rec == 0) {
             m_Button_Mipi_Camera.setTextColor(Color.RED);
         }
@@ -675,6 +856,7 @@ public class MainActivity extends Activity {
         rec = Settings.System.getInt(mContext.getContentResolver(), "Khadas_mipi_lcd_test", 2);
         if (rec == 1) {
             m_Button_Mipi_LCD.setTextColor(Color.GREEN);
+            mipi_lcd_test_ret = true;
         } else if (rec == 0) {
             m_Button_Mipi_LCD.setTextColor(Color.RED);
         }
@@ -682,16 +864,25 @@ public class MainActivity extends Activity {
         rec = Settings.System.getInt(mContext.getContentResolver(), "Khadas_tp_test", 2);
         if (rec == 1) {
             m_Button_TP.setTextColor(Color.GREEN);
+            tp_test_ret = true;
         } else if (rec == 0) {
             m_Button_TP.setTextColor(Color.RED);
         }
 
-        rec = Settings.System.getInt(mContext.getContentResolver(), "Khadas_write_mac_usid_test", 2);
-        if (rec == 1) {
+        if (checkMacAndSnOk()) {
+            wirte_mac_ret = true;
             m_Button_write_mac_usid.setTextColor(Color.GREEN);
-        } else if (rec == 0) {
+        } else {
             m_Button_write_mac_usid.setTextColor(Color.RED);
         }
+
+//        rec = Settings.System.getInt(mContext.getContentResolver(), "Khadas_write_mac_usid_test", 2);
+//        if (rec == 1) {
+//            m_Button_write_mac_usid.setTextColor(Color.GREEN);
+//        } else if (rec == 0) {
+//            m_Button_write_mac_usid.setTextColor(Color.RED);
+//        }
+
     }
 
     TextWatcher mTextWatcher = new TextWatcher()
@@ -828,6 +1019,7 @@ public class MainActivity extends Activity {
         if(Tools.exec(cmd_val).contains("")){
             Tools.exec("sync");
             m_Button_Restore_MCU_settings.setTextColor(Color.GREEN);
+            reset_mcu_ret = true;
         }
     }
 
@@ -1297,6 +1489,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.TF_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_TF.setText(strTxt);
                     m_TextView_TF.setTextColor(0xFF55FF55);
+                     tfcard_test_ret = true;
                 }
                 break;
 
@@ -1334,6 +1527,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.HDMI_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_HDMI.setText(strTxt);
                     m_TextView_HDMI.setTextColor(0xFF55FF55);
+                     hdmi_test_ret = true;
                     Log.d(TAG,"MSG_HDMI_TEST_OK");
                 }
                 break;
@@ -1351,6 +1545,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.DP_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_DP.setText(strTxt);
                     m_TextView_DP.setTextColor(0xFF55FF55);
+                    dp_test_ret  = true;
                     Log.d(TAG,"MSG_DP_TEST_OK");
                 }
                 break;
@@ -1373,6 +1568,7 @@ public class MainActivity extends Activity {
                     }
                     m_TextView_KEY.setText(strTxt);
                     m_TextView_KEY.setTextColor(0xFF55FF55);
+                     key_test_ret = true;
                     Log.d(TAG, "MSG_KEY_TEST_OK");
                 }
                 break;
@@ -1402,6 +1598,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.AGEING_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_AGEING.setText(strTxt);
                     m_TextView_AGEING.setTextColor(0xFF55FF55);
+                     ageing_test_ret = true;
                     Log.d(TAG,"MSG_AGEING_TEST_OK");
                 }
                 break;
@@ -1419,6 +1616,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.MCU_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_MCU.setText(strTxt);
                     m_TextView_MCU.setTextColor(0xFF55FF55);
+                     mcu_test_ret = true;
                     Log.d(TAG,"MSG_MCU_TEST_OK");
                 }
                 break;
@@ -1436,6 +1634,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.SPIFLASH_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_SPIFLASH.setText(strTxt);
                     m_TextView_SPIFLASH.setTextColor(0xFF55FF55);
+                    spi_test_ret = true;
                     Log.d(TAG,"MSG_SPIFLASH_TEST_OK");
                 }
                 break;
@@ -1453,6 +1652,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.PD12_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_PD12.setText(strTxt);
                     m_TextView_PD12.setTextColor(0xFF55FF55);
+                    fusb302_test_ret  = true;
                     Log.d(TAG,"MSG_PD12_TEST_OK");
                 }
                 break;
@@ -1486,6 +1686,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.Gsensor_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_Gsensor.setText(strTxt);
                     m_TextView_Gsensor.setTextColor(0xFF55FF55);
+                     gsensor_test_ret = true;
                     Log.d(TAG,"MSG_GSENSOR_TEST_OK");
                 }
                 break;
@@ -1503,6 +1704,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.Wifi_Test) + "    " + configSSID + "    " + wifiLevel + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_Wifi.setText(strTxt);
                     m_TextView_Wifi.setTextColor(0xFF55FF55);
+                     wifi_test_ret = true;
                 }
                 break;
                 case MSG_WIFI_TEST_ERROR:
@@ -1518,6 +1720,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.BT_Test) +"    " + BTSSID + "    "+ btLevel+"    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_BT.setText(strTxt);
                     m_TextView_BT.setTextColor(0xFF55FF55);
+                     bt_test_ret = true;
                 }
                 break;
                 case MSG_BT_TEST_ERROR:
@@ -1533,6 +1736,7 @@ public class MainActivity extends Activity {
                    String  strTxt = getResources().getString(R.string.Rtc_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_Rtc.setText(strTxt);
                     m_TextView_Rtc.setTextColor(0xFF55FF55);
+                    rtc_test_ret = true;
                 }
                 break;
                 case MSG_RTC_TEST_ERROR:
@@ -1636,6 +1840,7 @@ public class MainActivity extends Activity {
                         String strTxt = getResources().getString(R.string.TF_Test) + "    " + getResources().getString(R.string.Test_Ok);
                         m_TextView_TF.setText(strTxt);
                         m_TextView_TF.setTextColor(0xFF55FF55);
+                        tfcard_test_ret = true;
                     }
                 break;
 
@@ -1651,6 +1856,7 @@ public class MainActivity extends Activity {
                         String strTxt = getResources().getString(R.string.USB1_Test) + "    " + getResources().getString(R.string.Test_Ok);
                         m_TextView_USB1.setText(strTxt);
                         m_TextView_USB1.setTextColor(0xFF55FF55);
+                        usb20_test_ret = true;
                     }
                 break;
                 case  MSG_USB2_TEST_XL_ERROR:
@@ -1665,6 +1871,7 @@ public class MainActivity extends Activity {
                     String strTxt = getResources().getString(R.string.USB2_Test) + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_USB2.setText(strTxt);
                     m_TextView_USB2.setTextColor(0xFF55FF55);
+                    usb30_test_ret = true;
                     }
                 break;
 
@@ -1672,6 +1879,9 @@ public class MainActivity extends Activity {
                     m_TextView_CPU_THERMAL.setText(Tools.readFile(Tools.cpu_thermal));
                     m_TextView_CPU_FREQ.setText("0-3:" + Tools.readFile(Tools.cpu0_cpufreq).trim().substring(0, 4) + " 4-7: " + Tools.readFile(Tools.cpu4_cpufreq).trim().substring(0, 4));
                     break;
+            case MSG_TEST_RET_UPDATE:
+                checkTestRetUpate();
+                break;
             }
         }
     }

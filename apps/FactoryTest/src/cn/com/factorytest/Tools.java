@@ -340,6 +340,42 @@ public class Tools {
         mTotal = Integer.parseInt(MemTotal);
         return mTotal;
     }
+
+    public static String getMemSize() {
+        long mTotal;
+        String path = "/proc/meminfo";
+        String MemTotal = "";
+        String Cached = "";
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(path));
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (line.startsWith("MemTotal"))
+                    MemTotal = line;
+                if (line.startsWith("Cached"))
+                    Cached = line;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        MemTotal = MemTotal.replace("MemTotal:", "").replace("kB", "").trim();
+        Cached = Cached.replace("Cached:", "").replace("kB", "").trim();
+
+        mTotal = Integer.parseInt(MemTotal);
+        return (mTotal * 100 / 1024 / 1024 / 100.0) + " GB";
+    }
     
     public static String getRomSize(Context cnt){
     	 File path = Environment.getDataDirectory();  
