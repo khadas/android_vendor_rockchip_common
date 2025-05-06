@@ -647,7 +647,7 @@ public class MainActivity extends Activity {
                 if (btd != null) {
                     String name = btd.getName();
                     if (name != null) {
-                        if (name.equals(BTSSID)) {
+                        //if (name.equals(BTSSID)) {
                             if (rssi > CONFIG_BT_RSSI) {
                                 btLevel = -rssi;
                                 BT_ERR = false;
@@ -655,7 +655,7 @@ public class MainActivity extends Activity {
                             } else {
                                 BT_ERR = true;
                             }
-                        }
+                        //}
                         Log.d(TAG, "BT Found device name= " + btd.getName() + " "  + "rssi = " + rssi);
                     }
                 }
@@ -1309,13 +1309,13 @@ public class MainActivity extends Activity {
         Log.d(TAG, "wifi size: " + wifiList.size());
         if (wifiList != null) {
             for (ScanResult result : wifiList) {
-                if (result.SSID.equals(configSSID)) {
+                //if (result.SSID.equals(configSSID)) {
                     wifiLevel = WifiManager.calculateSignalLevel(result.level, 100);
                     Log.d(TAG, "wifiLevel: " + wifiLevel);
                     if (wifiLevel >= configLevel) {
                         bWifiScaned = true;
                     }
-                }
+                //}
             }
         }
         if (bWifiScaned) {
@@ -1701,7 +1701,7 @@ public class MainActivity extends Activity {
 
                 case MSG_WIFI_TEST_OK:
                 {
-                    String strTxt = getResources().getString(R.string.Wifi_Test) + "    " + configSSID + "    " + wifiLevel + "    " + getResources().getString(R.string.Test_Ok);
+                    String strTxt = getResources().getString(R.string.Wifi_Test) + "    " + wifiLevel + "    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_Wifi.setText(strTxt);
                     m_TextView_Wifi.setTextColor(0xFF55FF55);
                      wifi_test_ret = true;
@@ -1717,7 +1717,7 @@ public class MainActivity extends Activity {
 
                 case MSG_BT_TEST_OK:
                 {
-                    String strTxt = getResources().getString(R.string.BT_Test) +"    " + BTSSID + "    "+ btLevel+"    " + getResources().getString(R.string.Test_Ok);
+                    String strTxt = getResources().getString(R.string.BT_Test) +"    " + btLevel+"    " + getResources().getString(R.string.Test_Ok);
                     m_TextView_BT.setText(strTxt);
                     m_TextView_BT.setTextColor(0xFF55FF55);
                      bt_test_ret = true;
