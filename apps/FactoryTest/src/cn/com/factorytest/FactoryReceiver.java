@@ -156,6 +156,7 @@ public class FactoryReceiver extends BroadcastReceiver {
                         new Intent(context, RebootTestActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     );
+                    return;
                 }
                 if(setTestBoard(rec)){
                    setTestFlags(rec);
