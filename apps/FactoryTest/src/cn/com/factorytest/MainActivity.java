@@ -1877,7 +1877,7 @@ public class MainActivity extends Activity {
 
                 case MSG_GET_CPU_STATUS:
                     m_TextView_CPU_THERMAL.setText(Tools.readFile(Tools.cpu_thermal));
-                    m_TextView_CPU_FREQ.setText("0-3:" + Tools.readFile(Tools.cpu0_cpufreq).trim().substring(0, 4) + " 4-7: " + Tools.readFile(Tools.cpu4_cpufreq).trim().substring(0, 4));
+                    m_TextView_CPU_FREQ.setText("0-3:" + Tools.exec("cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq").trim().substring(0, 4) + " 4-7: " + Tools.exec("cat /sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_cur_freq").trim().substring(0, 4));
                     break;
             case MSG_TEST_RET_UPDATE:
                 checkTestRetUpate();
